@@ -170,4 +170,38 @@ body.home { margin:0; background:var(--bg); color:var(--text);
 }
 
 
+/* right-half layout stays as before */
+.hero-layout{
+  display:grid;
+  grid-template-columns: 1fr 1fr;   /* left empty, right text */
+  align-items:center;
+  gap: clamp(16px, 4vw, 48px);
+  min-height: calc(100vh - 18vh);
+  position: relative;
+  z-index: 1;                       /* above HOME word */
+}
+
+/* paragraph styling (black, readable, editorial) */
+.lede{
+  margin: 0;
+  color: var(--text);               /* black, not grey */
+  line-height: 1.32;
+  font-size: clamp(18px, 1.8vw, 24px);
+  max-width: 40rem;
+  font-weight: 400;
+}
+.lede-strong{ font-weight: 450; }   /* subtle weight bump */
+
+/* underline style for key words */
+.u{
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* mobile stacking */
+@media (max-width: 900px){
+  .hero-layout{ grid-template-columns: 1fr; min-height: auto; }
+}
+
 
