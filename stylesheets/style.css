@@ -132,3 +132,27 @@ body {
 .project-title { font-size: 1.15rem; margin: 0 0 6px; }
 .project-tags { margin: 0 0 8px; color: var(--muted); font-size: .92rem; }
 .project-excerpt { margin: 0; color: #2a2a2a; font-size: .98rem; }
+
+
+/* --- 1) Move the right-hand text up + start where the "M" begins --- */
+.hero { padding-top: 6vh; }             /* was 10vh; moves content up */
+.hero-layout{
+  grid-template-columns: 1.2fr 1fr;     /* wider empty left column → text starts nearer the "M" */
+  align-items: start;                    /* top-align the copy */
+  gap: clamp(20px, 4vw, 56px);          /* a bit more breathing room */
+}
+.hero-copy{ 
+  max-width: 44rem; 
+  padding: .25rem 0 0;                  /* subtle spacing so it doesn't feel squished */
+}
+
+/* --- 2) Make HOME touch the edges without increasing font-size --- */
+.hero-stamp{
+  left: -1vw;                            /* bleed slightly to the edges */
+  right: -1vw;
+  letter-spacing: 0.01em;                /* tiny tracking to widen without looking odd */
+  transform: scaleX(1.06);               /* horizontal stretch only */
+  transform-origin: center bottom;       /* keeps baseline visual */
+  line-height: .80;                      /* avoid clipping */
+}
+
