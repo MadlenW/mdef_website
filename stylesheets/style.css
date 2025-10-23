@@ -1,188 +1,73 @@
-:root>* {
-
-    --md-footer-bg-color: white;
-    --md-footer-fg-color: rgb(32, 32, 32);
-    --md-footer-bg-color--dark: white;
-    --md-footer-fg-color--lighter:  rgb(32, 32, 32);
-    --md-footer-fg-color--light:  rgb(32, 32, 32);
-    --mdc-typography-headline6-font-family: 'Be Vietnam', sans-serif;
-    --mdc-typography-font-family: 'Be Vietnam', sans-serif;
-    --md-typeset-a-color: rgb(12, 240, 190);
-     --md-primary-fg-color: rgb(25, 14, 84);
-
+/* =========================
+   Base tokens / colors
+   ========================= */
+:root {
+  --bg: #EFEBE3;    /* warm off-white */
+  --text: #111;     /* main text */
+  --muted: #5e5e5e; /* secondary text */
+  --ring: #111;     /* accents/borders */
 }
 
-
-.hide-scroll-bar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .hide-scroll-bar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .md-typeset .md-button--primary {
-    border-width: 1px;
-    border-color: rgb(25, 14, 84);
-    border-radius: 4px;
-  }
-
-.cardContent {
-  padding: 16px;
-  font-size: 16px;
-  color: rgb(32, 32, 32);
-}
-
-.md-typeset h2 {
-    font-weight: 500;
-}
-
-.mdc-typography--body2 {
-    font-weight: 300;
-    font-size: 14px;
-}
-
-
-
-
-:root { --bg:#efece4; --text:#111; --muted:#6a6a6a; --ring:#111; }
+/* =========================
+   Base resets / type
+   ========================= */
 * { box-sizing: border-box; }
-body { margin:0; background:var(--bg); color:var(--text);
-       font-family: ui-sans-serif, system-ui, Helvetica, Arial, sans-serif; }
 
-/* Header / Nav */
-.site-header { display:flex; justify-content:space-between; align-items:center; padding:20px 24px; }
-.logo { font-weight:700; text-decoration:none; color:inherit; }
-.site-nav a { margin-left:20px; text-decoration:none; color:inherit; }
-.site-nav a.active { border-bottom:2px solid currentColor; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
+}
 
-/* Layout */
-.wrap { max-width:1120px; margin:0 auto; padding:40px 24px 64px; }
-.page-title { font-size: clamp(28px, 4.5vw, 48px); margin: 12px 0 20px; }
+/* (legacy utility kept; harmless) */
+.hide-scroll-bar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scroll-bar::-webkit-scrollbar { display: none; }
 
-/* Filters */
-.filters { display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 28px; }
-.chip { border:1px solid var(--text); background:transparent; padding:8px 12px; border-radius:999px; cursor:pointer; }
-.chip.is-active { background:var(--text); color:var(--bg); }
+/* =========================
+   Header / Nav
+   ========================= */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 28px;
+  background: var(--bg);
+}
 
-/* Grid + Cards */
-.project-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:24px; }
-.project-card { background:#fff0; border:1px solid rgba(0,0,0,.12); border-radius:16px; overflow:hidden; transition: transform .08s ease, box-shadow .08s ease; }
-.project-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
-.project-link { display:block; color:inherit; text-decoration:none; height:100%; }
+.logo-mark {
+  width: 32px; height: 32px; display: inline-block;
+  border-radius: 50%; border: 2px solid var(--text);
+}
 
-.project-thumb { aspect-ratio: 16/10; overflow:hidden; background:#e8e5de; }
-.project-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.site-nav a {
+  margin-left: 24px; text-decoration: none; color: inherit;
+}
+.site-nav a:hover { text-decoration: underline; }
 
-.project-meta { padding:14px 14px 18px; }
-.project-title { font-size:1.15rem; margin:0 0 6px; }
-.project-tags { margin:0 0 8px; color:var(--muted); font-size:.92rem; }
-.project-excerpt { margin:0; color:#2a2a2a; font-size:.98rem; }
-
-
-
-/* ===================== */
-/* HOME PAGE STYLES */
-/* ===================== */
-
-body.home { margin:0; background:var(--bg); color:var(--text);
-            font-family: ui-sans-serif, system-ui, Helvetica, Arial, sans-serif; }
-
-.site-header { position:sticky; top:0; z-index:10;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:22px 28px; background:var(--bg); }
-
-.logo { font-weight:700; letter-spacing:.02em; text-decoration:none; color:inherit; }
-
-.site-nav a { margin-left:22px; text-decoration:none; color:inherit; }
-.site-nav a:hover { text-decoration:underline; }
-
+/* =========================
+   HOME (Landing)
+   ========================= */
 .hero {
-  min-height: calc(100vh - 80px);
-  display:grid; align-items:center;
-  padding:10vw 6vw 0;
-  position:relative; overflow:hidden;
-}
-
-.hero-content { max-width: 42rem; }
-.hero h1 { font-size: clamp(28px, 6vw, 64px); line-height:1.06; margin:0 0 .6rem; }
-.sub { margin:0; color:var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
-
-/* ============= HERO / HOME word ============= */
-.hero{
   position: relative;
-  min-height: 100vh;           /* full viewport */
-  padding: 8vh 6vw 0;          /* top/side breathing room */
-  overflow: hidden;            /* hide overspill on tiny screens */
+  min-height: 100vh;        /* full viewport */
+  padding: 10vh 6vw 0;      /* top/side breathing room */
+  overflow: hidden;         /* hide overspill on very small screens */
 }
 
-.hero-stamp{
-  position: absolute;
-  left: 0; right: 0; bottom: 0;   /* sit on the very bottom */
-  z-index: 0;                     /* behind the copy */
-  text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: -0.035em;
-  line-height: .78;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: .92;
-
-  /* 4 letters → ~25–35vw. Tweak to your taste. */
-  font-size: 33vw;
-}
-
-
-
-/* minimal ring logo */
-.logo-mark{
-  width:28px;height:28px; display:inline-block;
-  border-radius:50%;
-  border:2px solid var(--text);
-}
-@media (min-width:900px){ .logo-mark{ width:32px;height:32px; } }
-
-/* two-column hero: text sits on the right, vertically centered */
-.hero-layout{
-  display:grid;
-  grid-template-columns: 1fr 1fr;         /* left empty, right text */
-  align-items:center;
-  gap: clamp(16px, 4vw, 48px);
-  min-height: calc(100vh - 120px);        /* keeps it centered nicely */
-}
-
-/* copy block */
-.hero-copy{ max-width: 42rem; justify-self: end; }
-.hero-copy h1{ margin:0 0 .6rem; font-size: clamp(32px, 6vw, 64px); line-height:1.06; }
-.lede{ margin:0; color:var(--muted); font-size: clamp(16px, 2vw, 22px); line-height:1.35; }
-
-/* underline style for key words */
-.u{
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
-/* mobile: stack, center text */
-@media (max-width: 900px){
-  .hero-layout{ grid-template-columns: 1fr; min-height: auto; }
-  .hero-copy{ justify-self: start; }
-}
-
-
-/* right-half layout stays as before */
-.hero-layout{
-  display:grid;
-  grid-template-columns: 1fr 1fr;   /* left empty, right text */
-  align-items:center;
+/* Layout: empty left column, copy on the right */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   gap: clamp(16px, 4vw, 48px);
   min-height: calc(100vh - 18vh);
   position: relative;
-  z-index: 1;                       /* above HOME word */
+  z-index: 1;               /* above the HOME word */
 }
 
-/* paragraph styling (black, readable, editorial) */
-.lede{
+/* Copy block */
+.hero-copy { max-width: 42rem; justify-self: end; }
+.lede {
   margin: 0;
   color: var(--text);               /* black, not grey */
   line-height: 1.32;
@@ -190,18 +75,60 @@ body.home { margin:0; background:var(--bg); color:var(--text);
   max-width: 40rem;
   font-weight: 400;
 }
-.lede-strong{ font-weight: 450; }   /* subtle weight bump */
+.lede-strong { font-weight: 450; }
 
-/* underline style for key words */
-.u{
+/* Underlined keywords */
+.u {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
 
-/* mobile stacking */
-@media (max-width: 900px){
-  .hero-layout{ grid-template-columns: 1fr; min-height: auto; }
+/* Big HOME word across the bottom */
+.hero-stamp {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;   /* sit flush on the bottom */
+  z-index: 0;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: .80;               /* avoid clipping */
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: .92;
+  font-size: 33vw;                /* spans full width for 4 letters */
 }
 
+/* Stack on mobile */
+@media (max-width: 900px) {
+  .hero-layout { grid-template-columns: 1fr; min-height: auto; }
+  .hero-copy { justify-self: start; }
+}
 
+/* =========================
+   PROJECTS (Grid / Filters)
+   ========================= */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 40px 24px 64px; }
+.page-title { font-size: clamp(28px, 4.5vw, 48px); margin: 12px 0 20px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0 28px; }
+.chip { border: 1px solid var(--text); background: transparent; padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+.chip.is-active { background: var(--text); color: var(--bg); }
+
+.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.project-card {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 16px; overflow: hidden;
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.project-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+.project-link { display: block; color: inherit; text-decoration: none; height: 100%; }
+
+.project-thumb { aspect-ratio: 16/10; overflow: hidden; background: #e8e5de; }
+.project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.project-meta { padding: 14px 14px 18px; }
+.project-title { font-size: 1.15rem; margin: 0 0 6px; }
+.project-tags { margin: 0 0 8px; color: var(--muted); font-size: .92rem; }
+.project-excerpt { margin: 0; color: #2a2a2a; font-size: .98rem; }
