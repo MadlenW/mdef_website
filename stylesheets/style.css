@@ -121,3 +121,13 @@ body.home { margin:0; background:var(--bg); color:var(--text);
 
 .site-footer { padding:24px 28px 28px; color:var(--muted); }
 
+
+/* minimal ring logo */
+.logo-mark{
+  width:28px;height:28px; display:inline-block;
+  border-radius:50%;
+  border:2px solid var(--text);
+}
+@media (min-width:900px){ .logo-mark{ width:32px;height:32px; } }
+
+
