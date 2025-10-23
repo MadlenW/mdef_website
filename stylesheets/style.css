@@ -156,3 +156,34 @@ body {
   line-height: .80;                      /* avoid clipping */
 }
 
+
+
+/* === HOME fine-tuning (wins over earlier rules) === */
+
+/* 1) Move the right-hand text up, give it room above the big word,
+      and start the text where the "M" begins */
+body.home .hero {
+  padding-top: 6vh !important;            /* move content up */
+}
+body.home .hero-layout {
+  grid-template-columns: 1.35fr 1fr !important; /* pushes start closer to the "M" */
+  align-items: start !important;                /* top align text */
+  gap: clamp(24px, 5vw, 64px) !important;      /* more breathing room */
+  padding-bottom: 12vh;                         /* clear space above HOME */
+}
+body.home .hero-copy {
+  max-width: 46rem;
+  padding-top: .5rem;
+}
+
+/* 2) Make HOME kiss the edges without increasing font-size */
+body.home .hero-stamp {
+  left: -2.5vw !important;
+  right: -2.5vw !important;
+  letter-spacing: 0.025em;          /* widen without looking odd */
+  transform: scaleX(1.08);          /* subtle horizontal stretch */
+  transform-origin: center bottom;
+  line-height: .82;                  /* avoid clipping */
+}
+
+
