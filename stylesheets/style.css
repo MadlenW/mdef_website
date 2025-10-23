@@ -352,3 +352,23 @@ body.about .cv-section.columns .cv-list.compact { gap: 6px; }
   body.about .about-portrait { width: 100%; max-width: none; margin-left: 0; }
   body.about .about-statement { position: static; margin-top: 10px; }
 }
+
+
+
+
+/* ===== ABOUT — fine-tuning to match reference ===== */
+
+/* Color stays the same; slim overall spacing on page */
+body.about .about-grid{
+  align-items: start;
+  padding-top: 5vh;
+}
+
+/* 1) Make the portrait small (~7 cm ≈ 265px high) and set it further down.
+      Then pull it up slightly so the top lines of the statement overlap it. */
+body.about .about-left{ max-width: 560px; }
+
+body.about .about-portrait{
+  width: auto !important;
+  max-width:
+
