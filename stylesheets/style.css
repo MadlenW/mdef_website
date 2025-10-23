@@ -131,4 +131,32 @@ body.home { margin:0; background:var(--bg); color:var(--text);
 }
 @media (min-width:900px){ .logo-mark{ width:32px;height:32px; } }
 
+/* two-column hero: text sits on the right, vertically centered */
+.hero-layout{
+  display:grid;
+  grid-template-columns: 1fr 1fr;         /* left empty, right text */
+  align-items:center;
+  gap: clamp(16px, 4vw, 48px);
+  min-height: calc(100vh - 120px);        /* keeps it centered nicely */
+}
+
+/* copy block */
+.hero-copy{ max-width: 42rem; justify-self: end; }
+.hero-copy h1{ margin:0 0 .6rem; font-size: clamp(32px, 6vw, 64px); line-height:1.06; }
+.lede{ margin:0; color:var(--muted); font-size: clamp(16px, 2vw, 22px); line-height:1.35; }
+
+/* underline style for key words */
+.u{
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* mobile: stack, center text */
+@media (max-width: 900px){
+  .hero-layout{ grid-template-columns: 1fr; min-height: auto; }
+  .hero-copy{ justify-self: start; }
+}
+
+
 
