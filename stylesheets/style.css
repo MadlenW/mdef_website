@@ -108,19 +108,30 @@ body.home { margin:0; background:var(--bg); color:var(--text);
 .hero h1 { font-size: clamp(28px, 6vw, 64px); line-height:1.06; margin:0 0 .6rem; }
 .sub { margin:0; color:var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
 
-/* full-width HOME word */
-.hero{ padding: 10vw 6vw 10vw; position:relative; overflow:visible; }
-
-.hero-stamp{
-  position:absolute; left:0; right:0; bottom:-0.02em;   /* slightly below baseline so it's not clipped */
-  text-transform:uppercase; font-weight:900;
-  font-size: 24vw;           /* fills viewport width for 4 letters */
-  line-height:.82;           /* tight */
-  letter-spacing:-0.02em;
-  white-space:nowrap; pointer-events:none; opacity:.92;
+/* ============= HERO / HOME word ============= */
+.hero{
+  position: relative;
+  min-height: 100vh;           /* full viewport */
+  padding: 8vh 6vw 0;          /* top/side breathing room */
+  overflow: hidden;            /* hide overspill on tiny screens */
 }
 
-.site-footer { padding:24px 28px 28px; color:var(--muted); }
+.hero-stamp{
+  position: absolute;
+  left: 0; right: 0; bottom: 0;   /* sit on the very bottom */
+  z-index: 0;                     /* behind the copy */
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: .78;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: .92;
+
+  /* 4 letters → ~25–35vw. Tweak to your taste. */
+  font-size: 33vw;
+}
+
 
 
 /* minimal ring logo */
