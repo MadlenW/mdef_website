@@ -78,3 +78,46 @@ body { margin:0; background:var(--bg); color:var(--text);
 .project-title { font-size:1.15rem; margin:0 0 6px; }
 .project-tags { margin:0 0 8px; color:var(--muted); font-size:.92rem; }
 .project-excerpt { margin:0; color:#2a2a2a; font-size:.98rem; }
+
+
+
+/* ===================== */
+/* HOME PAGE STYLES */
+/* ===================== */
+
+body.home { margin:0; background:var(--bg); color:var(--text);
+            font-family: ui-sans-serif, system-ui, Helvetica, Arial, sans-serif; }
+
+.site-header { position:sticky; top:0; z-index:10;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:22px 28px; background:var(--bg); }
+
+.logo { font-weight:700; letter-spacing:.02em; text-decoration:none; color:inherit; }
+
+.site-nav a { margin-left:22px; text-decoration:none; color:inherit; }
+.site-nav a:hover { text-decoration:underline; }
+
+.hero {
+  min-height: calc(100vh - 80px);
+  display:grid; align-items:center;
+  padding:10vw 6vw 0;
+  position:relative; overflow:hidden;
+}
+
+.hero-content { max-width: 42rem; }
+.hero h1 { font-size: clamp(28px, 6vw, 64px); line-height:1.06; margin:0 0 .6rem; }
+.sub { margin:0; color:var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
+
+.hero-stamp {
+  position: absolute;
+  left:4vw; right:4vw; bottom:-2vw;
+  font-weight:900; text-transform:uppercase;
+  font-size: clamp(120px, 22vw, 340px);
+  line-height:.8;
+  white-space:nowrap;
+  pointer-events:none;
+  opacity:.92;
+}
+
+.site-footer { padding:24px 28px 28px; color:var(--muted); }
+
