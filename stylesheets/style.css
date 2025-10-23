@@ -286,3 +286,69 @@ body.about .site-header a { color: var(--text); }
   .about-right{ margin-top: 6px; }
 }
 
+
+/* ===== About: visual tuning to match reference ===== */
+
+/* 1) Smaller portrait, like the reference */
+body.about .about-left { 
+  max-width: 640px;              /* keeps the whole left block from getting too wide */
+}
+body.about .about-portrait{
+  width: 88%;
+  max-width: 520px;              /* ↓ main control for size */
+  aspect-ratio: 4 / 5;
+  margin-left: 6%;
+}
+body.about .about-portrait img{
+  object-position: center;
+}
+
+/* Statement: placeholder + slightly bolder */
+body.about .about-statement{
+  left: 9%;
+  top: 8%;
+  max-width: 78%;
+  font-weight: 600;              /* a touch bolder */
+  line-height: 1.32;
+}
+
+/* 2) Right column type: smaller, calmer; section titles stand out */
+body.about .about-right{
+  font-size: clamp(14px, 1.05vw, 15.5px);  /* overall smaller */
+  line-height: 1.5;                        /* tighter lines for that CV look */
+}
+
+/* Name: not too big/bold */
+body.about .about-name{
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 600;                         /* lighter than before */
+  margin: 0 0 8px;
+}
+
+/* Section headings should pop; others should not */
+body.about .cv-section h2{
+  font-size: .85rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 800;                         /* strong emphasis */
+  margin: 18px 0 10px;
+}
+
+/* Institution/job lines & details: regular weight */
+body.about .cv-list li { line-height: 1.45; }
+body.about .cv-list strong{ font-weight: 400; }
+body.about .cv-list span{ font-weight: 400; font-size: 0.98em; }
+
+/* Compact columns for Skills/Languages/Interests */
+body.about .cv-section.columns{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+body.about .cv-section.columns .cv-list.compact { gap: 6px; }
+
+/* Responsive: stack nicely on mobile */
+@media (max-width: 980px){
+  body.about .about-left { max-width: none; }
+  body.about .about-portrait { width: 100%; max-width: none; margin-left: 0; }
+  body.about .about-statement { position: static; margin-top: 10px; }
+}
