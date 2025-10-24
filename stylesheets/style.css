@@ -318,7 +318,7 @@ body.about .about-left .about-statement {
 /* Move image up so it meets the text;
    smaller numbers = higher image (so more overlap) */
 body.about .about-left .about-portrait {
-  margin: clamp(120px, 28vh, 420px) 0 0 0 !important; /* was ~240px/40vh/520px */
+  margin: clamp(80px, 20vh, 420px) 0 0 0 !important; /* was ~240px/40vh/520px */
 }
 
 /* Make sure no previous transforms or fixed sizing interfere */
