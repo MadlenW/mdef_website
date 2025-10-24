@@ -279,3 +279,26 @@ body.about .site-header a { color: var(--text); }
   .about-portrait{ margin-top: 48px; }
   .cv-section.columns{ grid-template-columns: 1fr 1fr; }
 }
+
+
+/* === ABOUT: bigger statement + stronger overlap === */
+
+/* 18pt ≈ 24px on desktop, still responsive */
+body.about .about-statement{
+  font-size: clamp(20px, 2vw, 24px) !important;
+  line-height: 1.38 !important;
+  /* increase the negative bottom margin so the image rides under the last lines */
+  margin: 0 6% -12% 0 !important;   /* was -7% */
+}
+
+/* lift the image a touch so it meets the text nicely */
+body.about .about-portrait{
+  margin: clamp(200px, 36vh, 480px) 0 0 0 !important; /* was 240px/40vh/520px */
+}
+
+/* if the overlap is still shy on very wide screens, give a tiny upward nudge */
+@media (min-width: 1200px){
+  body.about .about-portrait img{
+    transform: translateY(-2%) !important;
+  }
+}
