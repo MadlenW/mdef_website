@@ -327,3 +327,13 @@ body.about .about-left .about-portrait img {
   height: auto !important;
   transform: none !important;   /* cancel any earlier translateY */
 }
+
+
+/* === ABOUT: make placeholder text match image width === */
+body.about .about-left .about-statement {
+  max-width: 100% !important;     /* full width of the column */
+  margin: 0 0 -14% 0 !important;  /* keep the same overlap */
+  padding-right: 0 !important;    /* ensure it stretches edge to edge */
+  text-align: left;               /* keep alignment clean */
+}
+
