@@ -1,180 +1,185 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WORKS (IN PROGRESS)</title>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Works (in progress) — Madlen Wulffen</title>
+    <meta name="description" content="Projects by Madlen Wulffen." />
+    <!-- Use the SAME stylesheet as home (update path if needed) -->
+    <link rel="stylesheet" href="../stylesheets/style.css?v=3" />
 
-  <style>
-    /* ===== Palette ===== */
-    :root{
-      --red-1:#D9043D;
-      --red-2:#D90452;
-      --navy:#273859;
-      --sand:#D9C5AD;
-      --oxblood:#591902;
-      --ink:#0E0E10;
-      --bg:#ffffff;
-      --grid-line:#dcdcdc;
-    }
+    <style>
+      /* ===== Page-local styles for the Projects grid ===== */
 
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}
+      /* Keep your two colors + add four bright complements */
+      :root{
+        --red-1:#D9043D;   /* keep */
+        --navy:#273859;    /* keep */
+        --citrus:#F2C14E;  /* warm yellow */
+        --aqua:#06D6A0;    /* bright teal-green */
+        --sky:#00A6FB;     /* vivid blue */
+        --orange:#FF7F11;  /* bright orange */
+        --grid-line:#dcdcdc;
+      }
 
-    /* ===== Header (circle left, nav right) ===== */
-    .site-header{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:16px;padding:16px clamp(16px,5vw,48px);
-      border-bottom:1px solid var(--grid-line);
-      position:sticky;top:0;background:var(--bg);z-index:50;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;
-    }
-    .brand .avatar{
-      width:44px;height:44px;border-radius:999px;overflow:hidden;flex:0 0 auto;
-      border:1px solid var(--grid-line);
-      background:url("/assets/img/avatar.jpg") center/cover no-repeat; /* <-- update path */
-    }
-    .brand .name{font-weight:600;letter-spacing:.02em}
-    nav.primary a{
-      margin-left:24px; font-weight:500;
-    }
-    nav.primary a:hover{opacity:.7}
+      /* Title row */
+      .projects-hero{
+        /* Let your site CSS handle background/typography; only spacing here */
+        padding: clamp(16px,5vw,48px) clamp(0px,2vw,12px) 0; /* nearly edge-to-edge */
+        border-bottom: 1px solid var(--grid-line);
+      }
+      .projects-hero h1{
+        margin: 0;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        line-height: .92;
+        font-size: clamp(32px, 12vw, 120px); /* spans the width visually */
+        text-align: left;                    /* left-aligned if it can’t span */
+      }
 
-    /* ===== Hero title ===== */
-    .hero{padding: clamp(16px,5vw,48px) clamp(16px,5vw,48px) 0}
-    .hero-title{
-      margin:0;border-bottom:1px solid var(--grid-line);
-      padding-bottom: clamp(12px,1.5vw,16px);
-      font-weight:900;text-transform:uppercase;letter-spacing:.04em;line-height:.92;
-      font-size: clamp(32px, 12vw, 120px);   /* spans visually full width */
-      word-break:break-word;
-    }
+      /* Full-bleed grid (lines to the page edges like the reference) */
+      .projects-grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(240px, 36vw);
+        margin: 0;               /* no outer frame */
+        border-top: 1px solid var(--grid-line);
+        border-left: 1px solid var(--grid-line);
+      }
+      @media (max-width: 980px){
+        .projects-grid{ grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 640px){
+        .projects-grid{ grid-template-columns: 1fr; }
+      }
 
-    /* ===== Grid Frame (with visible lines) ===== */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: minmax(240px, 36vw);      /* responsive square-ish cells */
-      border-top:1px solid var(--grid-line);
-      border-left:1px solid var(--grid-line);
-      margin:0 clamp(16px,5vw,48px) clamp(40px,6vw,80px);
-    }
-    .cell{
-      position:relative;overflow:hidden;isolation:isolate;
-      border-right:1px solid var(--grid-line);
-      border-bottom:1px solid var(--grid-line);
-      background:#f7f7f7;
-      cursor:pointer;
-    }
+      .cell{
+        position: relative;
+        overflow: hidden;
+        border-right: 1px solid var(--grid-line);
+        border-bottom: 1px solid var(--grid-line);
+        cursor: pointer;
+        isolation: isolate;
+        background: #f7f7f7;
+      }
 
-    /* Background image layer */
-    .cell .img{
-      position:absolute;inset:0;
-      background-size:cover;background-position:center;
-      transition: transform .5s ease, opacity .25s ease;
-      z-index:1;
-    }
-    /* Color layer (entire tile color on hover) */
-    .cell::after{
-      content:"";position:absolute;inset:0;z-index:2;
-      background: var(--overlay, rgba(0,0,0,.7));
-      opacity:0;transition:opacity .25s ease;
-    }
-    .cell:hover::after{ opacity:1; }
-    .cell:hover .img{ transform: scale(1.03); }
+      /* The PHOTO sits centered with a 2 cm frame around it (non-hover) */
+      .img-frame{
+        position: absolute; inset: 2cm;         /* 2 cm margin on all sides */
+        display: grid; place-items: center;
+        z-index: 1;
+      }
+      /* Safety: on very small screens, limit the frame so image remains visible */
+      @media (max-width: 640px){
+        .img-frame{ inset: min(2cm, 24px); }
+      }
 
-    /* Title shown on hover */
-    .cell .label{
-      position:absolute;inset:0;z-index:3;display:grid;place-items:center;
-      text-transform:uppercase;font-weight:800;letter-spacing:.04em;text-align:center;
-      opacity:0;transition:opacity .2s ease;
-      padding:20px;
-      color:#fff;
-      font-size: clamp(16px, 2.2vw, 28px);
-    }
-    .cell[data-color="sand"] .label{ color:#111; } /* readable on light sand */
+      .img{
+        width: 100%; height: 100%;
+        background-size: cover; background-position: center;
+        transition: transform .45s ease, opacity .2s ease;
+      }
 
-    .cell:hover .label{ opacity:1; }
+      /* Whole-cell color overlay on hover */
+      .cell::after{
+        content:""; position:absolute; inset:0; z-index: 2;
+        background: var(--overlay, rgba(0,0,0,.7));
+        opacity: 0; transition: opacity .2s ease;
+      }
+      .cell:hover::after{ opacity: 1; }
+      .cell:hover .img{ transform: scale(1.03); }
 
-    /* Color mapping (whole tile color via custom property) */
-    .cell[data-color="red-1"]  { --overlay: var(--red-1); }
-    .cell[data-color="red-2"]  { --overlay: var(--red-2); }
-    .cell[data-color="navy"]   { --overlay: var(--navy); }
-    .cell[data-color="sand"]   { --overlay: var(--sand); }
-    .cell[data-color="oxblood"]{ --overlay: var(--oxblood); }
-    .cell[data-color="navy-2"] { --overlay: var(--navy); }
+      /* Title on hover */
+      .label{
+        position:absolute; inset:0; z-index: 3;
+        display:grid; place-items:center; text-align:center;
+        text-transform: uppercase; font-weight: 800; letter-spacing: .04em;
+        font-size: clamp(16px, 2.2vw, 28px);
+        padding: 20px; color: #fff; opacity: 0; transition: opacity .15s ease;
+      }
+      .cell:hover .label{ opacity: 1; }
+      /* Dark text for light overlays */
+      .cell[data-color="citrus"] .label,
+      .cell[data-color="aqua"]   .label,
+      .cell[data-color="sky"]    .label { color: #0e0e10; }
 
-    /* ===== Responsive columns ===== */
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px){
-      .grid{ grid-template-columns: 1fr; }
-      .hero-title{ font-size: clamp(32px, 16vw, 72px); } /* left-align naturally */
-    }
-  </style>
-</head>
-<body>
+      /* Color mapping */
+      .cell[data-color="red-1"] { --overlay: var(--red-1); }
+      .cell[data-color="navy"]  { --overlay: var(--navy); }
+      .cell[data-color="citrus"]{ --overlay: var(--citrus); }
+      .cell[data-color="aqua"]  { --overlay: var(--aqua); }
+      .cell[data-color="sky"]   { --overlay: var(--sky); }
+      .cell[data-color="orange"]{ --overlay: var(--orange); }
+    </style>
+  </head>
 
-  <!-- ===== Header ===== -->
-  <header class="site-header">
-    <div class="brand">
-      <div class="avatar" aria-hidden="true"></div>
-      <div class="name">Your Name</div>
-    </div>
-    <nav class="primary" aria-label="Primary">
-      <a href="/projects/">Projects</a>
-      <a href="/thinking-space/">Thinking Space</a>
-      <a href="/about/">About</a>
-    </nav>
-  </header>
+  <body>
+    <!-- ===== SAME HEADER as homepage (classes + structure retained) ===== -->
+    <header class="site-header">
+      <a class="logo-mark" href="/" aria-label="Home"></a>
+      <nav class="site-nav">
+        <a href="../projects/">Projects</a>
+        <a href="../thinking-space/">Thinking Space</a>
+        <a href="../about/">About</a>
+      </nav>
+    </header>
 
-  <!-- ===== Title ===== -->
-  <section class="hero" aria-labelledby="work-title">
-    <h1 id="work-title" class="hero-title">WORKS (IN PROGRESS)</h1>
-  </section>
+    <!-- ===== Title ===== -->
+    <section class="projects-hero" aria-labelledby="work-title">
+      <h1 id="work-title">WORKS (IN PROGRESS)</h1>
+    </section>
 
-  <!-- ===== Grid (3×2 with lines; full-cell color on hover) ===== -->
-  <section class="grid" aria-label="Projects grid">
-    <!-- Cell 1 -->
-    <a class="cell" data-color="red-1" href="/projects/project-one/">
-      <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=31')"></div>
-      <div class="label">Project One</div>
-    </a>
+    <!-- ===== Full-width, lined grid (3×2) ===== -->
+    <section class="projects-grid" aria-label="Projects">
+      <!-- 1 -->
+      <a class="cell" data-color="red-1" href="../projects/project-one/">
+        <div class="img-frame">
+          <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=51')"></div>
+        </div>
+        <div class="label">Project One</div>
+      </a>
 
-    <!-- Cell 2 -->
-    <a class="cell" data-color="red-2" href="/projects/project-two/">
-      <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=32')"></div>
-      <div class="label">Project Two</div>
-    </a>
+      <!-- 2 -->
+      <a class="cell" data-color="navy" href="../projects/project-two/">
+        <div class="img-frame">
+          <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=52')"></div>
+        </div>
+        <div class="label">Project Two</div>
+      </a>
 
-    <!-- Cell 3 -->
-    <a class="cell" data-color="navy" href="/projects/project-three/">
-      <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=33')"></div>
-      <div class="label">Project Three</div>
-    </a>
+      <!-- 3 -->
+      <a class="cell" data-color="citrus" href="../projects/project-three/">
+        <div class="img-frame">
+          <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=53')"></div>
+        </div>
+        <div class="label">Project Three</div>
+      </a>
 
-    <!-- Cell 4 -->
-    <a class="cell" data-color="sand" href="/projects/project-four/">
-      <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=34')"></div>
-      <div class="label">Project Four</div>
-    </a>
+      <!-- 4 -->
+      <a class="cell" data-color="aqua" href="../projects/project-four/">
+        <div class="img-frame">
+          <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=54')"></div>
+        </div>
+        <div class="label">Project Four</div>
+      </a>
 
-    <!-- Cell 5 -->
-    <a class="cell" data-color="oxblood" href="/projects/project-five/">
-      <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=35')"></div>
-      <div class="label">Project Five</div>
-    </a>
+      <!-- 5 -->
+      <a class="cell" data-color="sky" href="../projects/project-five/">
+        <div class="img-frame">
+          <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=55')"></div>
+        </div>
+        <div class="label">Project Five</div>
+      </a>
 
-    <!-- Cell 6 -->
-    <a class="cell" data-color="navy-2" href="/projects/project-six/">
-      <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=36')"></div>
-      <div class="label">Project Six</div>
-    </a>
-  </section>
+      <!-- 6 -->
+      <a class="cell" data-color="orange" href="../projects/project-six/">
+        <div class="img-frame">
+          <div class="img" style="background-image:url('https://picsum.photos/1200/900?random=56')"></div>
+        </div>
+        <div class="label">Project Six</div>
+      </a>
+    </section>
 
-</body>
+  </body>
 </html>
