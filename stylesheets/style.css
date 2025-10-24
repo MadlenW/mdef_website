@@ -302,3 +302,28 @@ body.about .about-portrait{
     transform: translateY(-2%) !important;
   }
 }
+
+/* === ABOUT: force bigger statement + 2-line overlap and move image up === */
+
+/* Bigger statement (~18pt ≈ 24px desktop), tighter leading */
+body.about .about-left .about-statement {
+  font-size: clamp(20px, 2vw, 24px) !important;
+  line-height: 1.36 !important;
+  /* Overlap image by ~2 lines */
+  margin: 0 6% -16% 0 !important;   /* negative bottom margin = overlap */
+  max-width: 82% !important;
+  font-weight: 700 !important;
+}
+
+/* Move image up so it meets the text;
+   smaller numbers = higher image (so more overlap) */
+body.about .about-left .about-portrait {
+  margin: clamp(160px, 32vh, 420px) 0 0 0 !important; /* was ~240px/40vh/520px */
+}
+
+/* Make sure no previous transforms or fixed sizing interfere */
+body.about .about-left .about-portrait img {
+  width: 100% !important;
+  height: auto !important;
+  transform: none !important;   /* cancel any earlier translateY */
+}
