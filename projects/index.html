@@ -22,21 +22,24 @@
       }
 
       /* Title row */
-      .projects-hero{
-        /* same horizontal padding as header for perfect edge alignment */
-        padding: 6px clamp(16px,5vw,48px) 0;   /* tiny space under header border */
-        border-bottom:1px solid var(--grid-line);
+           .projects-hero {
+        /* Align headline closer to header */
+        padding: 2px clamp(16px, 5vw, 48px) 0;
+        border-bottom: 1px solid var(--grid-line);
       }
-      .projects-hero h1{
-        margin:0;
-        font-weight:900;
-        text-transform:uppercase;
-        letter-spacing:.04em;
-        line-height:.92;
-        font-size: clamp(32px, 12vw, 120px);
-        text-align:right;                    /* align to right side of the site */
-        transform: translateY(0);
+
+      .projects-hero h1 {
+        margin: 0;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        font-size: clamp(60px, 6vw, 100px); /* smaller so it fits on one line */
+        white-space: nowrap; /* keeps it all on one line */
+        text-align: right; /* aligns with nav */
+        transform: translateY(-4px); /* nudges text slightly higher */
       }
+
 
       /* Full-bleed grid (lines to page edges like reference) */
       .projects-grid{
