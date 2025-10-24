@@ -219,7 +219,6 @@ body.about .site-header a { color: var(--text); }
 }
 .about-portrait img{
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(100%);
   mix-blend-mode: multiply;
 }
 
@@ -573,5 +572,61 @@ body.about .about-grid { align-items: start; }
   }
 }
 
+/* === ABOUT — force image size/position & overlap, remove grey box === */
+:root { --about-ink: #273859; }
+
+/* color + type for the statement and right column */
+body.about .about-statement,
+body.about .about-right,
+body.about .cv-section h2,
+body.about .cv-list,
+body.about .cv-list a {
+  color: var(--about-ink) !important;
+}
+
+/* start both columns at the same top line */
+body.about .about-grid { align-items: start; }
+
+/* STATEMENT: top of page, bold, ~14pt, overlaps image by 6–8% via negative margin */
+body.about .about-statement{
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 6% -7% 0 !important;     /* negative bottom margin = overlap */
+  max-width: 82% !important;
+  font-weight: 700 !important;        /* bold */
+  font-size: clamp(18px, 1.45vw, 20px) !important;  /* ≈14–20px */
+  line-height: 1.42 !important;
+}
+
+/* IMAGE WRAPPER: no aspect-ratio, no background, full column width,
+   pushed to bottom third of the viewport */
+body.about .about-portrait{
+  position: relative !important;
+  z-index: 1 !important;
+  margin: clamp(240px, 40vh, 520px) 0 0 0 !important; /* move it down */
+  width: 100% !important;
+  max-width: none !important;
+  background: none !important;        /* kill grey box */
+  aspect-ratio: auto !important;       /* cancel older rule */
+  overflow: visible !important;
+}
+
+/* IMAGE: fill wrapper width, natural color, slight upward nudge (if you prefer overlap here, remove it since we use negative margin above) */
+body.about .about-portrait img{
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  filter: none !important;             /* not black & white */
+  mix-blend-mode: normal !important;
+}
+
+/* RIGHT COLUMN: same color, align to top */
+body.about .about-right{
+  margin-top: 0 !important;
+  color: var(--about-ink) !important;
+  font-size: clamp(14px, 1.05vw, 15.5px);
+  line-height: 1.5;
+}
 
 
