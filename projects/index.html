@@ -1,86 +1,163 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects — Your Name</title>
-  <meta name="description" content="Selected projects by Your Name." />
-   <link rel="stylesheet" href="./stylesheets/style.css?v=1" />
+  <title>Work (in progress)</title>
+
+  <style>
+    /* ===== Palette (your colors) ===== */
+    :root{
+      --red-1:#D9043D;
+      --red-2:#D90452;
+      --navy:#273859;
+      --sand:#D9C5AD;
+      --oxblood:#591902;
+      --ink:#0E0E10;          /* helper for text */
+      --bg:#ffffff;           /* page background */
+      --grid-gap: min(2.4vw, 24px);
+    }
+
+    /* ===== Base ===== */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+
+    /* ===== Header placeholder (keep yours) ===== */
+    header.site-header{position:sticky;top:0;background:var(--bg);z-index:50}
+
+    /* ===== Hero title ===== */
+    .hero{
+      width:100%;
+      border-bottom:1px solid #e9e9e9;
+      padding:clamp(16px,5vw,40px) clamp(16px,5vw,48px) 0;
+    }
+    .hero-title{
+      width:100%;
+      margin:0 0 clamp(16px,3.5vw,36px) 0;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      line-height:.95;
+      /* Big, responsive type similar to your reference */
+      font-size:clamp(28px, 10vw, 96px);
+    }
+
+    /* ===== Grid ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--grid-gap);
+      padding: clamp(16px,5vw,48px);
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: repeat(2, 1fr);}
+    }
+    @media (max-width: 640px){
+      .grid{grid-template-columns: 1fr;}
+    }
+
+    /* ===== Tile ===== */
+    .tile{
+      position:relative;
+      aspect-ratio: 1 / 1;                      /* perfect square tiles */
+      overflow:hidden;
+      border:1px solid #e9e9e9;
+      background:#f6f6f6;
+      cursor:pointer;
+      isolation:isolate;
+    }
+    .tile img{
+      width:100%;height:100%;
+      object-fit:cover;object-position:center;
+      display:block;
+      transition: transform .5s ease;
+    }
+    .tile:hover img{ transform: scale(1.04); }
+
+    /* Overlay (color + project name) */
+    .tile .overlay{
+      position:absolute;inset:0;
+      display:grid;place-items:center;
+      text-align:center;
+      padding:20px;
+      color:white;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      opacity:0;
+      transition: opacity .25s ease;
+      background: var(--overlay, rgba(0,0,0,.7));
+      mix-blend-mode: normal;
+      z-index:2;
+    }
+    .tile:hover .overlay{ opacity:1; }
+
+    .tile .overlay span{
+      font-size: clamp(16px, 2.2vw, 28px);
+      line-height:1.1;
+    }
+
+    /* Assign overlay colors per tile (using data attributes) */
+    .tile[data-color="red-1"]  { --overlay: var(--red-1); }
+    .tile[data-color="red-2"]  { --overlay: var(--red-2); }
+    .tile[data-color="navy"]   { --overlay: var(--navy); }
+    .tile[data-color="sand"]   { --overlay: var(--sand); color:#111; } /* sand is light; switch text to dark */
+    .tile[data-color="oxblood"]{ --overlay: var(--oxblood); }
+    .tile[data-color="navy-2"] { --overlay: var(--navy); }             /* reuse to get 6th color */
+  </style>
 </head>
 <body>
-  <!-- Header / Global Nav -->
+
+  <!-- ===== Keep your existing header markup here =====
   <header class="site-header">
-    <a class="logo" href="/">Your Name</a>
-    <nav class="site-nav">
-      <a class="active" href="/projects/">Projects</a>
-      <a href="/thinking-space/">Thinking Space</a>
-      <a href="/about/">About</a>
-    </nav>
+    [PASTE the exact header from your home/projects so it stays identical]
   </header>
+  ==================================================== -->
 
-  <!-- Page Title + Filters -->
-  <main class="wrap">
-    <h1 class="page-title">Projects</h1>
+  <main>
+    <section class="hero" aria-labelledby="work-title">
+      <h1 id="work-title" class="hero-title">WORK (IN PROGRESS)</h1>
+    </section>
 
-    <div class="filters" aria-label="Project filters">
-      <button data-filter="all" class="chip is-active">All</button>
-      <button data-filter="urban-futures" class="chip">Urban Futures</button>
-      <button data-filter="circular-design" class="chip">Circular Design</button>
-      <button data-filter="research" class="chip">Research</button>
-      <button data-filter="speculative" class="chip">Speculative</button>
-    </div>
+    <section class="grid" aria-label="Projects">
+      <!-- Tile 1 -->
+      <figure class="tile" data-color="red-1">
+        <img src="https://picsum.photos/800/800?random=11" alt="Project image placeholder 1">
+        <figcaption class="overlay"><span>Project One</span></figcaption>
+      </figure>
 
-    <!-- Project Grid -->
-    <section class="project-grid">
-      <!-- CARD EXAMPLE — duplicate and change content/links -->
-      <article class="project-card" data-tags="urban-futures research">
-        <a class="project-link" href="/projects/project-name/">
-          <figure class="project-thumb">
-            <img src="/assets/images/projects/sample-1.jpg" alt="Project thumbnail" loading="lazy" />
-          </figure>
-          <div class="project-meta">
-            <h2 class="project-title">Project Name</h2>
-            <p class="project-tags">Urban Futures · Research · 2025</p>
-            <p class="project-excerpt">One-line description of the concept and outcome.</p>
-          </div>
-        </a>
-      </article>
+      <!-- Tile 2 -->
+      <figure class="tile" data-color="red-2">
+        <img src="https://picsum.photos/800/800?random=12" alt="Project image placeholder 2">
+        <figcaption class="overlay"><span>Project Two</span></figcaption>
+      </figure>
 
-      <article class="project-card" data-tags="circular-design">
-        <a class="project-link" href="/projects/another-project/">
-          <figure class="project-thumb">
-            <img src="/assets/images/projects/sample-2.jpg" alt="Project thumbnail" loading="lazy" />
-          </figure>
-          <div class="project-meta">
-            <h2 class="project-title">Another Project</h2>
-            <p class="project-tags">Circular Design · 2024</p>
-            <p class="project-excerpt">Short teaser sentence about the project.</p>
-          </div>
-        </a>
-      </article>
+      <!-- Tile 3 -->
+      <figure class="tile" data-color="navy">
+        <img src="https://picsum.photos/800/800?random=13" alt="Project image placeholder 3">
+        <figcaption class="overlay"><span>Project Three</span></figcaption>
+      </figure>
 
-      <!-- Add more cards here -->
+      <!-- Tile 4 -->
+      <figure class="tile" data-color="sand">
+        <img src="https://picsum.photos/800/800?random=14" alt="Project image placeholder 4">
+        <figcaption class="overlay"><span>Project Four</span></figcaption>
+      </figure>
+
+      <!-- Tile 5 -->
+      <figure class="tile" data-color="oxblood">
+        <img src="https://picsum.photos/800/800?random=15" alt="Project image placeholder 5">
+        <figcaption class="overlay"><span>Project Five</span></figcaption>
+      </figure>
+
+      <!-- Tile 6 -->
+      <figure class="tile" data-color="navy-2">
+        <img src="https://picsum.photos/800/800?random=16" alt="Project image placeholder 6">
+        <figcaption class="overlay"><span>Project Six</span></figcaption>
+      </figure>
     </section>
   </main>
 
-  <script>
-    // Tiny client-side filter (no framework)
-    const chips = document.querySelectorAll('.chip');
-    const cards = document.querySelectorAll('.project-card');
-    chips.forEach(chip => chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('is-active'));
-      chip.classList.add('is-active');
-      const f = chip.dataset.filter;
-      cards.forEach(card => {
-        if (f === 'all' || card.dataset.tags.includes(f)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }));
-  </script>
 </body>
 </html>
