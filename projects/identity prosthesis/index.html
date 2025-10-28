@@ -131,6 +131,36 @@
         .scroll-pane{ overflow: visible; padding-left: 0; padding-right: clamp(16px,5vw,48px); }
         .hero-tile{ width: 100%; margin: 0; } /* mobile: use full width for simplicity */
       }
+
+
+      .triptych{
+          display:grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(10px, 1.8vw, 18px);
+        }
+        .triptych img{
+          width:100%;
+          aspect-ratio: 16 / 9;   /* same format/size */
+          object-fit: cover;
+          display:block;
+        }
+        
+        /* Optional: heading styling on the right */
+        .scroll-inner h2{
+          margin: 0 0 8px 0;
+          font-size: clamp(22px, 2.2vw, 28px);
+          font-weight: 800;
+        }
+        .scroll-inner p.intro{
+          font-size: clamp(18px, 1.6vw, 22px);
+          line-height: 1.5;
+          margin: 0 0 18px 0;
+        }
+
+/* Responsive collapse */
+@media (max-width: 900px){ .triptych{ grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 600px){ .triptych{ grid-template-columns: 1fr; } }
+      
     </style>
   </head>
 
@@ -180,36 +210,18 @@
       <!-- Scrollable right column -->
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
-          <p class="lede">
-            Introductory paragraph for <em>Identity Prosthesis</em> — describe the concept,
-            theme, and questions this work investigates.
-          </p>
+         <h2>The Mediated Self</h2>
+<p class="intro">
+  If I can only perceive myself through mirrors and media, then my “best version” is always a mediated construct.
+  How can the self be understood if it is always projected, filtered, delayed, or distorted?
+</p>
 
-          <div class="framed">
-            <img src="../../images/placeholder-16x9.jpg" alt="Project image">
-          </div>
-
-          <div class="body">
-            <p>
-              Use this space for detailed text, background, research, process, and visuals.
-              You can intersperse paragraphs, images, or embedded videos.
-            </p>
-          </div>
-
-          <div class="framed">
-            <video controls preload="metadata" poster="../../images/placeholder-16x9.jpg">
-              <source src="../../videos/placeholder.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <div class="body">
-            <p>
-              Wrap up with reflections or next steps for <em>Identity Prosthesis</em>.
-            </p>
-          </div>
-        </div>
-      </section>
+<section class="triptych" aria-label="Photo series: right, front, left">
+  <!-- order: right, front, left -->
+  <figure><img src="../../images/mm_picright.PNG" alt="Identity Prosthesis — right view"></figure>
+  <figure><img src="../../images/mm_picfront.PNG" alt="Identity Prosthesis — front view"></figure>
+  <figure><img src="../../images/mmpic_left.PNG" alt="Identity Prosthesis — left view"></figure>
+</section>
     </main>
   </body>
 </html>
