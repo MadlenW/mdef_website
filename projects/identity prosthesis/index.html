@@ -26,21 +26,23 @@
 
       .site-header{ position:sticky; top:0; z-index:50; }
 
-      /* Left rail: vertical label */
-      .left-rail{
+    .left-rail{
         position: sticky; top: 0; height: 100vh;
         border-right: none;
-        display:flex; justify-content:center; align-items:flex-end;
+        display:flex;
+        justify-content: flex-start;   /* pin to the top */
+        align-items: center;           /* keep centered horizontally in the rail */
+        padding-top: 6px;              /* small offset below the header line */
         background: transparent;
       }
       .rail-text{
-        margin-bottom: 10px;
+        margin: 0;                     /* remove extra bottom space */
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: .06em;
         writing-mode: vertical-rl;
         text-orientation: mixed;
-        transform: rotate(180deg);
+        transform: none;               /* remove 180° flip so "P" is at the top */
         font-size: clamp(22px, 4.5vw, 60px);
       }
 
@@ -86,10 +88,10 @@
       .meta dd{ margin: 0 0 14px 0; border: none; min-height: 1.6em; }
 
       /* Scrollable content (right column) */
-      .scroll-pane{
+       .scroll-pane{
         min-height:100vh;
         overflow:auto;
-        padding: 6px 40px 40px 0;           /* left aligned to the column start */
+        padding: calc(6px + 1cm) 40px 40px 0;  /* <- was: 6px 40px 40px 0 */
       }
       .scroll-inner{
         display:grid; gap: clamp(18px, 2.2vw, 28px);
