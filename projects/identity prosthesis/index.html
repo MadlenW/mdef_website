@@ -26,23 +26,25 @@
 
       .site-header{ position:sticky; top:0; z-index:50; }
 
-    .left-rail{
+         .left-rail{
         position: sticky; top: 0; height: 100vh;
         border-right: none;
-        display:flex;
-        justify-content: flex-start;   /* pin to the top */
-        align-items: center;           /* keep centered horizontally in the rail */
-        padding-top: 6px;              /* small offset below the header line */
+        display: flex;
+        justify-content: center;      /* center horizontally within the rail */
+        align-items: flex-end;        /* stick to bottom */
+        padding: 0 0 3cm 0;           /* move it down by 3 cm */
         background: transparent;
       }
+      
+      /* Vertical label with P at the bottom (read bottom → top) */
       .rail-text{
-        margin: 0;                     /* remove extra bottom space */
+        margin: 0;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: .06em;
         writing-mode: vertical-rl;
         text-orientation: mixed;
-        transform: none;               /* remove 180° flip so "P" is at the top */
+        transform: rotate(180deg);    /* flips so the word starts at the bottom */
         font-size: clamp(22px, 4.5vw, 60px);
       }
 
