@@ -10,62 +10,60 @@
     <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
 
     <style>
-      /* ===== Layout tokens ===== */
       :root{
-        /* Rail extends from page edge to the tile’s left edge (up to where the tile starts) */
-        --rail: calc(1.5cm + clamp(16px,5vw,48px));
-        --panel: min(36vw, 520px);    /* Left static panel width (the square tile fills this) */
+        --rail: calc(1.5cm + clamp(16px,5vw,48px)); /* rail reaches the tile edge */
+        --panel: min(36vw, 520px);                  /* static panel width */
         --gap: clamp(12px, 2.2vw, 20px);
-        --accent:#D9043D;             /* Tile color for this project */
+        --accent:#D9043D;                           /* tile color for this project */
       }
 
-      /* ===== 3-column layout: [rail | static panel | scrollable content] ===== */
+      /* 3-column layout */
       .case-layout{
         display:grid;
         grid-template-columns: var(--rail) var(--panel) 1fr;
         min-height:100vh;
       }
 
-      /* ===== Header (same classes as home). Use relative link so it works locally too ===== */
       .site-header{ position:sticky; top:0; z-index:50; }
 
-      /* ===== Left rail: big vertical label ===== */
+      /* Left rail: vertical label */
       .left-rail{
         position: sticky; top: 0; height: 100vh;
-        border-right: none;                 /* no dividing line on this page */
+        border-right: none;
         display:flex; justify-content:center; align-items:flex-end;
         background: transparent;
       }
       .rail-text{
         margin-bottom: 10px;
-        font-weight: 900;                   /* very bold */
-        text-transform: uppercase;          /* ALL CAPS */
+        font-weight: 900;
+        text-transform: uppercase;
         letter-spacing: .06em;
         writing-mode: vertical-rl;
         text-orientation: mixed;
-        transform: rotate(180deg);          /* so “WORKS” starts at the bottom */
-        font-size: clamp(22px, 4.5vw, 60px);/* big + responsive */
+        transform: rotate(180deg);
+        font-size: clamp(22px, 4.5vw, 60px);
       }
 
-      /* ===== Static panel (tile + meta). Stays fixed while right pane scrolls ===== */
+      /* Static panel (tile + meta) */
       .static-panel{
         position: sticky; top: 0; height: 100vh;
-        border-right: none;                 /* no dividing line */
+        border-right: none;
         display:flex; flex-direction:column;
-        padding: 6px 0 14px 0;              /* no horizontal padding: tile touches rail */
+        padding: 6px 0 14px 0;              /* no horizontal padding */
         gap: var(--gap);
         background: transparent;
       }
 
-      /* Square colored tile fills the entire panel width */
+      /* Colored square tile, inset 1 cm on every side */
       .hero-tile{
-        width: 100%;
-        aspect-ratio: 1 / 1;                /* perfect square */
+        width: calc(100% - 2cm);            /* minus 1 cm on left + right */
+        aspect-ratio: 1 / 1;                /* keeps square */
         background: var(--accent);
-        border: none;                       /* no outer line */
+        border: none;
         display:grid; place-items:center;
         text-align:center; color:#fff;
         padding: 20px;
+        margin: 1cm;                        /* 1 cm top/bottom/left/right */
       }
       .hero-tile .title{
         font-weight: 900;
@@ -75,10 +73,10 @@
         text-transform: uppercase;
       }
 
-      /* Meta block aligns to the same x-start as the scroll content (the “third” line) */
+      /* Meta: align left edge with tile's left edge (1 cm inset) */
       .meta{
-        margin-left: auto;                  /* push to panel’s right edge */
-        width: min(360px, 90%);
+        margin-left: 1cm;                   /* same left start as tile */
+        max-width: calc(100% - 2cm);        /* respect the same inset on right */
         font-size: 16px;                    /* ~12pt */
         color: #111;
         display:grid; gap: 10px;
@@ -87,32 +85,32 @@
       .meta dt{ font-weight: 600; margin: 0 0 2px 0; }
       .meta dd{ margin: 0 0 14px 0; border: none; min-height: 1.6em; }
 
-      /* ===== Scrollable right content ===== */
+      /* Scrollable content (right column) */
       .scroll-pane{
         min-height:100vh;
-        overflow:auto;                      /* only this column scrolls */
-        padding: 6px 40px 40px 0;           /* align to the “third” line (no left pad) */
+        overflow:auto;
+        padding: 6px 40px 40px 0;           /* left aligned to the column start */
       }
       .scroll-inner{
         display:grid; gap: clamp(18px, 2.2vw, 28px);
-        border-left: none;                  /* remove any grid line */
+        border-left: none;                  /* no dividing line */
         padding-left: 0;
       }
 
       .lede{ font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; }
       .body p{ line-height: 1.6; }
 
-      /* Optional framed media (keeps your 2 cm inner margin look). Remove borders for clean look. */
+      /* Optional framed media */
       .framed{
         position: relative; background: transparent;
-        border: none;                       /* no outer line */
+        border: none;
         aspect-ratio: 16 / 9; display:grid; place-items:center;
       }
       .framed > img, .framed > video{
-        width: calc(100% - 4cm);            /* 2 cm inset each side */
+        width: calc(100% - 4cm);
         height: calc(100% - 4cm);
         object-fit: cover; background: #f6f6f6;
-        border: none;                       /* no inner line */
+        border: none;
       }
       @media (max-width: 800px){
         .framed > img, .framed > video{
@@ -121,18 +119,19 @@
         }
       }
 
-      /* ===== Responsive behavior ===== */
+      /* Responsive */
       @media(max-width:980px){
-        .case-layout{ grid-template-columns: var(--rail) 1fr; } /* drop fixed panel */
+        .case-layout{ grid-template-columns: var(--rail) 1fr; }
         .static-panel{ position: static; height: auto; }
-        .meta{ margin-left: 0; width: 100%; }
+        .meta{ margin-left: 0; max-width: 100%; }
         .scroll-pane{ overflow: visible; padding-left: 0; padding-right: clamp(16px,5vw,48px); }
+        .hero-tile{ width: 100%; margin: 0; } /* mobile: use full width for simplicity */
       }
     </style>
   </head>
 
   <body>
-    <!-- Header (same structure/classes as your home page) -->
+    <!-- Header (same as home) -->
     <header class="site-header">
       <a class="logo-mark" href="../../index.html" aria-label="Home"></a>
       <nav class="site-nav">
@@ -142,14 +141,13 @@
       </nav>
     </header>
 
-    <!-- Main layout -->
     <main class="case-layout">
-      <!-- Left rail with big vertical label -->
+      <!-- Left rail -->
       <aside class="left-rail" aria-hidden="true">
-        <div class="rail-text">WORKS (IN PROGRESS)</div>
+        <div class="rail-text">PROJECTS</div>
       </aside>
 
-      <!-- Static panel: full-width square tile + meta -->
+      <!-- Static panel: inset square tile + aligned meta -->
       <section class="static-panel">
         <div class="hero-tile">
           <div class="title">Identity Prosthesis</div>
@@ -161,8 +159,8 @@
             <dd><!-- e.g., 2024 – 2025 --></dd>
           </div>
           <div>
-            <dt>Place</dt>
-            <dd><!-- e.g., Barcelona / Berlin --></dd>
+            <dt>Purpose</dt>
+            <dd><!-- e.g., Prototype exploring ... --></dd>
           </div>
           <div>
             <dt>Role / Involvement</dt>
@@ -170,12 +168,12 @@
           </div>
           <div>
             <dt>Outcome</dt>
-            <dd><!-- e.g., Prototype / Installation / Essay --></dd>
+            <dd><!-- e.g., Installation / Publication / Pilot --></dd>
           </div>
         </dl>
       </section>
 
-      <!-- Scrollable right content -->
+      <!-- Scrollable right column -->
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
           <p class="lede">
