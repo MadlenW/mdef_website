@@ -124,39 +124,39 @@
         display: block;
       }
       
-   /* Video pair: one landscape + one portrait */
-.video-pair {
-  display: grid;
-  grid-template-columns: 3fr 2fr; /* left wider for landscape, right narrower for portrait */
-  gap: 2px; /* same tiny gap as triptych */
-  align-items: stretch;
-  margin: 6px 0 12px 0;
+   /* Single-column stacked videos */
+.video-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* tiny gap between videos */
+  margin: 8px 0 16px 0;
 }
 
-.video-pair video {
+/* Landscape video full width */
+.video-stack .landscape {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  display: block;
   background: #000;
+  display: block;
 }
 
-/* Stack videos vertically on smaller screens */
+/* Portrait video centered, narrower */
+.video-stack .portrait {
+  width: 55%;              /* adjust width if you want bigger/smaller */
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;          /* centers horizontally */
+  object-fit: cover;
+  background: #000;
+  display: block;
+}
+
+/* Responsive: full width on small screens */
 @media (max-width: 800px) {
-  .video-pair {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-  }
-  .video-pair video {
-    aspect-ratio: auto;
-    height: auto;
+  .video-stack .portrait {
+    width: 100%;
   }
 }
-      
-      /* Stack videos on smaller screens */
-      @media (max-width: 800px) {
-        .video-pair { grid-template-columns: 1fr; }
-      }
 
 
       /* Short note under images */
@@ -251,15 +251,15 @@ The interactive reflection reveals a fragmented, delayed, or multiplied image of
             A lightweight head-mounted foil arm holds a circular mirror at variable distance, creating an off-axis, delayed reflection that shifts with posture and movement. The device foregrounds mediation—how seeing oneself is always filtered through tools, frames and angles.
           </p>
 
-          <section class="video-pair" aria-label="Video pair">
-  <!-- Landscape video first -->
-  <video autoplay loop muted playsinline>
+         <section class="video-stack" aria-label="Video section">
+  <!-- Landscape first -->
+  <video class="landscape" autoplay loop muted playsinline>
     <source src="../../images/identity_prosthesis_landscape.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <!-- Portrait video second -->
-  <video autoplay loop muted playsinline>
+  <!-- Portrait below -->
+  <video class="portrait" autoplay loop muted playsinline>
     <source src="../../images/identity_prosthesis_portrait.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
