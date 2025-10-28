@@ -5,110 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Identity Prosthesis — Madlen Wulffen</title>
     <meta name="description" content="Project case study: Identity Prosthesis" />
+
+    <!-- Reuse your global site styles -->
     <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
 
     <style>
+      /* ===== Layout tokens ===== */
       :root{
-        --grid-line:#dcdcdc;
-        --rail: 1.5cm;
-        --panel: min(36vw, 520px);
-        --gap: clamp(12px,2.2vw,20px);
-        --accent:#D9043D; /* red tile for this project */
+        /* Rail extends from page edge to the tile’s left edge (up to where the tile starts) */
+        --rail: calc(1.5cm + clamp(16px,5vw,48px));
+        --panel: min(36vw, 520px);    /* Left static panel width (the square tile fills this) */
+        --gap: clamp(12px, 2.2vw, 20px);
+        --accent:#D9043D;             /* Tile color for this project */
       }
 
+      /* ===== 3-column layout: [rail | static panel | scrollable content] ===== */
       .case-layout{
         display:grid;
         grid-template-columns: var(--rail) var(--panel) 1fr;
         min-height:100vh;
       }
 
+      /* ===== Header (same classes as home). Use relative link so it works locally too ===== */
+      .site-header{ position:sticky; top:0; z-index:50; }
+
+      /* ===== Left rail: big vertical label ===== */
       .left-rail{
-        position:sticky;top:0;height:100vh;
-        border-right:1px solid var(--grid-line);
-        display:flex;justify-content:center;align-items:flex-end;
-        background:transparent;
+        position: sticky; top: 0; height: 100vh;
+        border-right: none;                 /* no dividing line on this page */
+        display:flex; justify-content:center; align-items:flex-end;
+        background: transparent;
       }
       .rail-text{
-        margin-bottom:8px;
-        font-weight:800;
-        letter-spacing:.06em;
-        text-transform:uppercase;
-        writing-mode:vertical-rl;
-        text-orientation:mixed;
-        transform:rotate(180deg);
-        font-size:12px;
+        margin-bottom: 10px;
+        font-weight: 900;                   /* very bold */
+        text-transform: uppercase;          /* ALL CAPS */
+        letter-spacing: .06em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);          /* so “WORKS” starts at the bottom */
+        font-size: clamp(22px, 4.5vw, 60px);/* big + responsive */
       }
 
+      /* ===== Static panel (tile + meta). Stays fixed while right pane scrolls ===== */
       .static-panel{
-        position:sticky;top:0;height:100vh;
-        border-right:1px solid var(--grid-line);
-        display:flex;flex-direction:column;
-        padding:6px clamp(16px,5vw,48px) 14px clamp(12px,2vw,18px);
-        gap:var(--gap);
-        background:transparent;
+        position: sticky; top: 0; height: 100vh;
+        border-right: none;                 /* no dividing line */
+        display:flex; flex-direction:column;
+        padding: 6px 0 14px 0;              /* no horizontal padding: tile touches rail */
+        gap: var(--gap);
+        background: transparent;
       }
 
+      /* Square colored tile fills the entire panel width */
       .hero-tile{
-        width:100%;aspect-ratio:1/1;
-        background:var(--accent);
-        border:1px solid var(--grid-line);
-        display:grid;place-items:center;
-        text-align:center;color:#fff;
-        padding:20px;
+        width: 100%;
+        aspect-ratio: 1 / 1;                /* perfect square */
+        background: var(--accent);
+        border: none;                       /* no outer line */
+        display:grid; place-items:center;
+        text-align:center; color:#fff;
+        padding: 20px;
       }
       .hero-tile .title{
-        font-weight:900;
-        font-size:clamp(20px,2.4vw,32px);
-        line-height:1.1;
-        letter-spacing:.03em;
-        text-transform:uppercase;
+        font-weight: 900;
+        font-size: clamp(20px, 2.4vw, 32px);
+        line-height: 1.1;
+        letter-spacing: .03em;
+        text-transform: uppercase;
       }
 
+      /* Meta block aligns to the same x-start as the scroll content (the “third” line) */
       .meta{
-        font-size:16px;color:#111;
-        display:grid;gap:10px;
+        margin-left: auto;                  /* push to panel’s right edge */
+        width: min(360px, 90%);
+        font-size: 16px;                    /* ~12pt */
+        color: #111;
+        display:grid; gap: 10px;
+        text-align: left;
       }
-      .meta dt{font-weight:600;margin-bottom:2px;}
-      .meta dd{margin:0 0 8px 0;border-bottom:1px solid #eee;min-height:1.6em;}
+      .meta dt{ font-weight: 600; margin: 0 0 2px 0; }
+      .meta dd{ margin: 0 0 14px 0; border: none; min-height: 1.6em; }
 
+      /* ===== Scrollable right content ===== */
       .scroll-pane{
         min-height:100vh;
-        overflow:auto;
-        padding:6px clamp(16px,5vw,48px) 40px clamp(16px,3vw,28px);
+        overflow:auto;                      /* only this column scrolls */
+        padding: 6px 40px 40px 0;           /* align to the “third” line (no left pad) */
       }
       .scroll-inner{
-        display:grid;gap:clamp(18px,2.2vw,28px);
-        border-left:1px solid var(--grid-line);
-        padding-left:clamp(16px,2vw,20px);
+        display:grid; gap: clamp(18px, 2.2vw, 28px);
+        border-left: none;                  /* remove any grid line */
+        padding-left: 0;
       }
 
-      .lede{font-size:clamp(18px,1.6vw,22px);line-height:1.5;}
-      .body p{line-height:1.6;}
+      .lede{ font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; }
+      .body p{ line-height: 1.6; }
 
+      /* Optional framed media (keeps your 2 cm inner margin look). Remove borders for clean look. */
       .framed{
-        position:relative;background:transparent;
-        border:1px solid var(--grid-line);
-        aspect-ratio:16/9;display:grid;place-items:center;
+        position: relative; background: transparent;
+        border: none;                       /* no outer line */
+        aspect-ratio: 16 / 9; display:grid; place-items:center;
       }
-      .framed>img,.framed>video{
-        width:calc(100% - 4cm);height:calc(100% - 4cm);
-        object-fit:cover;background:#f6f6f6;border:1px solid #e6e6e6;
+      .framed > img, .framed > video{
+        width: calc(100% - 4cm);            /* 2 cm inset each side */
+        height: calc(100% - 4cm);
+        object-fit: cover; background: #f6f6f6;
+        border: none;                       /* no inner line */
       }
-      @media(max-width:800px){
-        .framed>img,.framed>video{
-          width:calc(100% - 32px);height:auto;aspect-ratio:16/9;
+      @media (max-width: 800px){
+        .framed > img, .framed > video{
+          width: calc(100% - 32px);
+          height: auto; aspect-ratio: 16 / 9;
         }
       }
+
+      /* ===== Responsive behavior ===== */
       @media(max-width:980px){
-        .case-layout{grid-template-columns:var(--rail) 1fr;}
-        .static-panel{position:static;height:auto;border-right:none;border-bottom:1px solid var(--grid-line);}
-        .scroll-pane{overflow:visible;}
-        .scroll-inner{border-left:none;padding-left:0;}
+        .case-layout{ grid-template-columns: var(--rail) 1fr; } /* drop fixed panel */
+        .static-panel{ position: static; height: auto; }
+        .meta{ margin-left: 0; width: 100%; }
+        .scroll-pane{ overflow: visible; padding-left: 0; padding-right: clamp(16px,5vw,48px); }
       }
     </style>
   </head>
 
   <body>
+    <!-- Header (same structure/classes as your home page) -->
     <header class="site-header">
       <a class="logo-mark" href="../../index.html" aria-label="Home"></a>
       <nav class="site-nav">
@@ -118,11 +142,14 @@
       </nav>
     </header>
 
+    <!-- Main layout -->
     <main class="case-layout">
+      <!-- Left rail with big vertical label -->
       <aside class="left-rail" aria-hidden="true">
         <div class="rail-text">WORKS (IN PROGRESS)</div>
       </aside>
 
+      <!-- Static panel: full-width square tile + meta -->
       <section class="static-panel">
         <div class="hero-tile">
           <div class="title">Identity Prosthesis</div>
@@ -148,10 +175,11 @@
         </dl>
       </section>
 
+      <!-- Scrollable right content -->
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
           <p class="lede">
-            Introductory paragraph for *Identity Prosthesis* — describe the concept,
+            Introductory paragraph for <em>Identity Prosthesis</em> — describe the concept,
             theme, and questions this work investigates.
           </p>
 
@@ -161,8 +189,8 @@
 
           <div class="body">
             <p>
-              Use this space for detailed text, background, research, process,
-              and visuals. You can intersperse paragraphs, images, or embedded videos.
+              Use this space for detailed text, background, research, process, and visuals.
+              You can intersperse paragraphs, images, or embedded videos.
             </p>
           </div>
 
@@ -175,7 +203,7 @@
 
           <div class="body">
             <p>
-              Wrap up with reflections or next steps for *Identity Prosthesis*.
+              Wrap up with reflections or next steps for <em>Identity Prosthesis</em>.
             </p>
           </div>
         </div>
