@@ -133,34 +133,40 @@
       }
 
 
-      .triptych{
-          display:grid;
+             /* Tight triptych gallery */
+        .triptych {
+          display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: clamp(10px, 1.8vw, 18px);
-        }
-        .triptych img{
-          width:100%;
-          aspect-ratio: 16 / 9;   /* same format/size */
-          object-fit: cover;
-          display:block;
+          gap: 1mm; /* minimal gap between photos */
         }
         
-        /* Optional: heading styling on the right */
-        .scroll-inner h2{
-          margin: 0 0 8px 0;
+        .triptych img {
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          display: block;
+        }
+        
+        /* Title + paragraph spacing */
+        .scroll-inner h2 {
+          margin: 0 0 4px 0; /* less bottom gap */
           font-size: clamp(22px, 2.2vw, 28px);
           font-weight: 800;
         }
-        .scroll-inner p.intro{
+        
+        .scroll-inner p.intro {
+          margin: 0 0 14px 0; /* directly under title */
           font-size: clamp(18px, 1.6vw, 22px);
-          line-height: 1.5;
-          margin: 0 0 18px 0;
+          line-height: 1.4;
         }
-
-/* Responsive collapse */
-@media (max-width: 900px){ .triptych{ grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 600px){ .triptych{ grid-template-columns: 1fr; } }
-      
+        
+        /* Responsive stacking */
+        @media (max-width: 900px) {
+          .triptych { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+          .triptych { grid-template-columns: 1fr; }
+        }
     </style>
   </head>
 
