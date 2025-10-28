@@ -11,10 +11,10 @@
 
     <style>
       :root{
-        --rail: calc(1.5cm + clamp(16px,5vw,48px)); /* rail reaches the tile edge */
-        --panel: min(36vw, 520px);                  /* static panel width */
+        --rail: calc(1.5cm + clamp(16px,5vw,48px));
+        --panel: min(36vw, 520px);
         --gap: clamp(12px, 2.2vw, 20px);
-        --accent:#D9043D;                           /* tile color for this project */
+        --accent:#D9043D;
       }
 
       /* 3-column layout */
@@ -23,20 +23,18 @@
         grid-template-columns: var(--rail) var(--panel) 1fr;
         min-height:100vh;
       }
-
       .site-header{ position:sticky; top:0; z-index:50; }
 
-         .left-rail{
+      /* Left rail: PROJECTS, bottom aligned, P at bottom */
+      .left-rail{
         position: sticky; top: 0; height: 100vh;
         border-right: none;
         display: flex;
-        justify-content: center;      /* center horizontally within the rail */
-        align-items: flex-end;        /* stick to bottom */
-        padding: 0 0 3cm 0;           /* move it down by 3 cm */
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0 0 3cm 0;
         background: transparent;
       }
-      
-      /* Vertical label with P at the bottom (read bottom → top) */
       .rail-text{
         margin: 0;
         font-weight: 900;
@@ -44,7 +42,7 @@
         letter-spacing: .06em;
         writing-mode: vertical-rl;
         text-orientation: mixed;
-        transform: rotate(180deg);    /* flips so the word starts at the bottom */
+        transform: rotate(180deg);
         font-size: clamp(22px, 4.5vw, 60px);
       }
 
@@ -53,21 +51,19 @@
         position: sticky; top: 0; height: 100vh;
         border-right: none;
         display:flex; flex-direction:column;
-        padding: 6px 0 14px 0;              /* no horizontal padding */
+        padding: 6px 0 14px 0;
         gap: var(--gap);
         background: transparent;
       }
-
-      /* Colored square tile, inset 1 cm on every side */
       .hero-tile{
-        width: calc(100% - 2cm);            /* minus 1 cm on left + right */
-        aspect-ratio: 1 / 1;                /* keeps square */
+        width: calc(100% - 2cm);
+        aspect-ratio: 1 / 1;
         background: var(--accent);
         border: none;
         display:grid; place-items:center;
         text-align:center; color:#fff;
         padding: 20px;
-        margin: 1cm;                        /* 1 cm top/bottom/left/right */
+        margin: 1cm;
       }
       .hero-tile .title{
         font-weight: 900;
@@ -76,12 +72,10 @@
         letter-spacing: .03em;
         text-transform: uppercase;
       }
-
-      /* Meta: align left edge with tile's left edge (1 cm inset) */
       .meta{
-        margin-left: 1cm;                   /* same left start as tile */
-        max-width: calc(100% - 2cm);        /* respect the same inset on right */
-        font-size: 16px;                    /* ~12pt */
+        margin-left: 1cm;
+        max-width: calc(100% - 2cm);
+        font-size: 16px;
         color: #111;
         display:grid; gap: 10px;
         text-align: left;
@@ -90,37 +84,63 @@
       .meta dd{ margin: 0 0 14px 0; border: none; min-height: 1.6em; }
 
       /* Scrollable content (right column) */
-       .scroll-pane{
+      .scroll-pane{
         min-height:100vh;
         overflow:auto;
-        padding: calc(6px + 1cm) 40px 40px 0;  /* <- was: 6px 40px 40px 0 */
+        padding: calc(6px + 1cm) 40px 40px 0; /* aligns top with tile */
       }
       .scroll-inner{
-        display:grid; gap: clamp(18px, 2.2vw, 28px);
-        border-left: none;                  /* no dividing line */
+        display:grid;
+        gap: clamp(8px, 1.6vw, 18px); /* tighter default vertical rhythm */
+        border-left: none;
         padding-left: 0;
       }
 
-      .lede{ font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; }
-      .body p{ line-height: 1.6; }
+      .scroll-inner h2 { margin: 0 0 2px 0; font-weight: 800; }
+      .scroll-inner p.intro { margin: 0 0 6px 0; }
+
+      /* Reflection paragraph (small, thin) */
+      .reflection-text{
+        margin: 0 0 10px 0;
+        font-size: 10pt;
+        font-weight: 300;
+        color: #111;
+        line-height: 1.5;
+        width: 100%;
+        white-space: pre-line;
+      }
+
+      /* Triptych: almost touching; big images */
+      .triptych{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        margin: 4px 0 6px 0;
+      }
+      .triptych img{
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Short note under images */
+      .prosthesis-note{
+        margin: 2px 0 12px 0;
+        font-size: 10pt;
+        font-weight: 300;
+        color: #111;
+        line-height: 1.5;
+      }
 
       /* Optional framed media */
-      .framed{
-        position: relative; background: transparent;
-        border: none;
-        aspect-ratio: 16 / 9; display:grid; place-items:center;
-      }
+      .framed{ position: relative; background: transparent; border: none; aspect-ratio: 16/9; display:grid; place-items:center; }
       .framed > img, .framed > video{
-        width: calc(100% - 4cm);
-        height: calc(100% - 4cm);
-        object-fit: cover; background: #f6f6f6;
-        border: none;
+        width: calc(100% - 4cm); height: calc(100% - 4cm);
+        object-fit: cover; background: #f6f6f6; border: none;
       }
       @media (max-width: 800px){
-        .framed > img, .framed > video{
-          width: calc(100% - 32px);
-          height: auto; aspect-ratio: 16 / 9;
-        }
+        .framed > img, .framed > video{ width: calc(100% - 32px); height: auto; aspect-ratio: 16/9; }
       }
 
       /* Responsive */
@@ -129,62 +149,10 @@
         .static-panel{ position: static; height: auto; }
         .meta{ margin-left: 0; max-width: 100%; }
         .scroll-pane{ overflow: visible; padding-left: 0; padding-right: clamp(16px,5vw,48px); }
-        .hero-tile{ width: 100%; margin: 0; } /* mobile: use full width for simplicity */
+        .hero-tile{ width: 100%; margin: 0; }
       }
-
-
-		      .triptych{
-		  display:grid;
-		  grid-template-columns: repeat(3, 1fr);
-		  gap: 2px;               /* tiny notch between images */
-		}
-		.triptych img{
-		  width: 100%;
-		  aspect-ratio: 3 / 2;    /* taller = bigger images; keeps nice crop */
-		  object-fit: cover;
-		  display: block;
-		}
-		
-		/* Small caption/description below the images */
-		.prosthesis-note{
-		  margin: 8px 0 22px 0;
-		  font-size: 10pt;
-		  font-weight: 300;
-		  color: #111;
-		  line-height: 1.5;
-		}
-        
-        /* Title + paragraph spacing */
-        .scroll-inner h2 {
-          margin: 0 0 4px 0; /* less bottom gap */
-          font-size: clamp(22px, 2.2vw, 28px);
-          font-weight: 800;
-        }
-        
-        .scroll-inner p.intro {
-          margin: 0 0 14px 0; /* directly under title */
-          font-size: clamp(18px, 1.6vw, 22px);
-          line-height: 1.4;
-        }
-          
-        .reflection-text {
-          font-size: 11pt;
-          font-weight: 300;
-          color: #111;
-          line-height: 1.5;
-          margin: 4px 0 16px 0;        
-         width: 100%;         /* slight gap under intro */
-          white-space: pre-line;    /* preserves line breaks / indents */
-        }
-
-      
-        /* Responsive stacking */
-        @media (max-width: 900px) {
-          .triptych { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-          .triptych { grid-template-columns: 1fr; }
-        }
+      @media (max-width: 900px){ .triptych{ grid-template-columns: repeat(2,1fr); } }
+      @media (max-width: 600px){ .triptych{ grid-template-columns: 1fr; } }
     </style>
   </head>
 
@@ -212,55 +180,43 @@
         </div>
 
         <dl class="meta" aria-label="Project details">
-          <div>
-            <dt>Time</dt>
-            <dd><!-- e.g., 2024 – 2025 --></dd>
-          </div>
-          <div>
-            <dt>Purpose</dt>
-            <dd><!-- e.g., Prototype exploring ... --></dd>
-          </div>
-          <div>
-            <dt>Role / Involvement</dt>
-            <dd><!-- e.g., Research & Concept Development --></dd>
-          </div>
-          <div>
-            <dt>Outcome</dt>
-            <dd><!-- e.g., Installation / Publication / Pilot --></dd>
-          </div>
+          <div><dt>Time</dt><dd><!-- e.g., 2024 – 2025 --></dd></div>
+          <div><dt>Purpose</dt><dd><!-- e.g., Prototype exploring ... --></dd></div>
+          <div><dt>Role / Involvement</dt><dd><!-- e.g., Research & Concept Development --></dd></div>
+          <div><dt>Outcome</dt><dd><!-- e.g., Installation / Publication / Pilot --></dd></div>
         </dl>
       </section>
 
       <!-- Scrollable right column -->
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
-         <h2>The Mediated Self</h2>
-<p class="intro">
-  If I can only perceive myself through mirrors and media, then my “best version” is always a mediated construct.
-  How can the self be understood if it is always projected, filtered, delayed, or distorted?
-</p>
-          
-<p class="reflection-text">
-„To become the best version of yourself“ is a contemporary mantra of self-optimization, visibility and curated identity. There are several predetermined assumptions behind this phrase: 
-	// That there is such a thing as the „best“ version, a stable ideal self.
-	// One can achieve this through control, improvement and enhancement. 
-	// This self is always reflected, on screens, in mirrors, in others’ validation
+          <h2>The Mediated Self</h2>
+          <p class="intro">
+            If I can only perceive myself through mirrors and media, then my “best version” is always a mediated construct.
+            How can the self be understood if it is always projected, filtered, delayed, or distorted?
+          </p>
+
+          <p class="reflection-text">
+„To become the best version of yourself“ is a contemporary mantra of self-optimization, visibility and curated identity. There are several predetermined assumptions behind this phrase:
+  // That there is such a thing as the „best“ version, a stable ideal self.
+  // One can achieve this through control, improvement and enhancement.
+  // This self is always reflected, on screens, in mirrors, in others’ validation
 
 This prosthesis explores how self-perception is inherently mediated through technologies of reflection such as mirrors, cameras, screens and others. In a culture obsessed with “becoming the best version of yourself,” the mirror becomes a site of both aspiration and distortion.
 The interactive reflection reveals a fragmented, delayed, or multiplied image of the self, exposing how our pursuit of perfection depends on external mediation. The prosthesis invites viewers to confront not their “best” self, but the distance between who they are and how they appear.
-</p>
+          </p>
 
-<section class="triptych" aria-label="Photo series: right, front, left">
-  <!-- order: right, front, left -->
-  <figure><img src="../../images/mm_picright.PNG" alt="Identity Prosthesis — right view"></figure>
-  <figure><img src="../../images/mm_picfront.PNG" alt="Identity Prosthesis — front view"></figure>
-  <figure><img src="../../images/mmpic_left.PNG" alt="Identity Prosthesis — left view"></figure>
-</section>
+          <section class="triptych" aria-label="Photo series: right, front, left">
+            <figure><img src="../../images/mm_picright.PNG" alt="Identity Prosthesis — right view"></figure>
+            <figure><img src="../../images/mm_picfront.PNG" alt="Identity Prosthesis — front view"></figure>
+            <figure><img src="../../images/mmpic_left.PNG" alt="Identity Prosthesis — left view"></figure>
+          </section>
 
-<p class="prosthesis-note">
-  A lightweight head-mounted foil arm holds a circular mirror at variable distance, creating an off-axis, delayed reflection that shifts with posture and movement. The device foregrounds mediation—how seeing oneself is always filtered through tools, frames and angles.
-</p>
-			
+          <p class="prosthesis-note">
+            A lightweight head-mounted foil arm holds a circular mirror at variable distance, creating an off-axis, delayed reflection that shifts with posture and movement. The device foregrounds mediation—how seeing oneself is always filtered through tools, frames and angles.
+          </p>
+        </div> <!-- /.scroll-inner -->
+      </section> <!-- /.scroll-pane -->
     </main>
   </body>
 </html>
