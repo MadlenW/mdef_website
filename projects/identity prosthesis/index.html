@@ -123,6 +123,29 @@
         object-fit: cover;
         display: block;
       }
+      
+            /* Two portrait videos side by side */
+      .video-pair {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px; /* same tiny gap as triptych */
+        margin: 6px 0 12px 0; /* minimal top/bottom spacing */
+      }
+      
+      .video-pair video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 9 / 16; /* portrait format */
+        object-fit: cover;
+        display: block;
+        background: #000; /* optional black background */
+      }
+      
+      /* Stack videos on smaller screens */
+      @media (max-width: 800px) {
+        .video-pair { grid-template-columns: 1fr; }
+      }
+
 
       /* Short note under images */
       .prosthesis-note{
@@ -215,6 +238,19 @@ The interactive reflection reveals a fragmented, delayed, or multiplied image of
           <p class="prosthesis-note">
             A lightweight head-mounted foil arm holds a circular mirror at variable distance, creating an off-axis, delayed reflection that shifts with posture and movement. The device foregrounds mediation—how seeing oneself is always filtered through tools, frames and angles.
           </p>
+
+          <section class="video-pair" aria-label="Video pair">
+  <video autoplay loop muted playsinline>
+    <source src="../../images/identity_prosthesis_left.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <video autoplay loop muted playsinline>
+    <source src="../../images/identity_prosthesis_right.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</section>
+
         </div> <!-- /.scroll-inner -->
       </section> <!-- /.scroll-pane -->
     </main>
