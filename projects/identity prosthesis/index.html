@@ -1,1 +1,185 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Identity Prosthesis — Madlen Wulffen</title>
+    <meta name="description" content="Project case study: Identity Prosthesis" />
+    <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
 
+    <style>
+      :root{
+        --grid-line:#dcdcdc;
+        --rail: 1.5cm;
+        --panel: min(36vw, 520px);
+        --gap: clamp(12px,2.2vw,20px);
+        --accent:#D9043D; /* red tile for this project */
+      }
+
+      .case-layout{
+        display:grid;
+        grid-template-columns: var(--rail) var(--panel) 1fr;
+        min-height:100vh;
+      }
+
+      .left-rail{
+        position:sticky;top:0;height:100vh;
+        border-right:1px solid var(--grid-line);
+        display:flex;justify-content:center;align-items:flex-end;
+        background:transparent;
+      }
+      .rail-text{
+        margin-bottom:8px;
+        font-weight:800;
+        letter-spacing:.06em;
+        text-transform:uppercase;
+        writing-mode:vertical-rl;
+        text-orientation:mixed;
+        transform:rotate(180deg);
+        font-size:12px;
+      }
+
+      .static-panel{
+        position:sticky;top:0;height:100vh;
+        border-right:1px solid var(--grid-line);
+        display:flex;flex-direction:column;
+        padding:6px clamp(16px,5vw,48px) 14px clamp(12px,2vw,18px);
+        gap:var(--gap);
+        background:transparent;
+      }
+
+      .hero-tile{
+        width:100%;aspect-ratio:1/1;
+        background:var(--accent);
+        border:1px solid var(--grid-line);
+        display:grid;place-items:center;
+        text-align:center;color:#fff;
+        padding:20px;
+      }
+      .hero-tile .title{
+        font-weight:900;
+        font-size:clamp(20px,2.4vw,32px);
+        line-height:1.1;
+        letter-spacing:.03em;
+        text-transform:uppercase;
+      }
+
+      .meta{
+        font-size:16px;color:#111;
+        display:grid;gap:10px;
+      }
+      .meta dt{font-weight:600;margin-bottom:2px;}
+      .meta dd{margin:0 0 8px 0;border-bottom:1px solid #eee;min-height:1.6em;}
+
+      .scroll-pane{
+        min-height:100vh;
+        overflow:auto;
+        padding:6px clamp(16px,5vw,48px) 40px clamp(16px,3vw,28px);
+      }
+      .scroll-inner{
+        display:grid;gap:clamp(18px,2.2vw,28px);
+        border-left:1px solid var(--grid-line);
+        padding-left:clamp(16px,2vw,20px);
+      }
+
+      .lede{font-size:clamp(18px,1.6vw,22px);line-height:1.5;}
+      .body p{line-height:1.6;}
+
+      .framed{
+        position:relative;background:transparent;
+        border:1px solid var(--grid-line);
+        aspect-ratio:16/9;display:grid;place-items:center;
+      }
+      .framed>img,.framed>video{
+        width:calc(100% - 4cm);height:calc(100% - 4cm);
+        object-fit:cover;background:#f6f6f6;border:1px solid #e6e6e6;
+      }
+      @media(max-width:800px){
+        .framed>img,.framed>video{
+          width:calc(100% - 32px);height:auto;aspect-ratio:16/9;
+        }
+      }
+      @media(max-width:980px){
+        .case-layout{grid-template-columns:var(--rail) 1fr;}
+        .static-panel{position:static;height:auto;border-right:none;border-bottom:1px solid var(--grid-line);}
+        .scroll-pane{overflow:visible;}
+        .scroll-inner{border-left:none;padding-left:0;}
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo-mark" href="../../index.html" aria-label="Home"></a>
+      <nav class="site-nav">
+        <a href="../../projects/">Projects</a>
+        <a href="../../thinking-space/">Thinking Space</a>
+        <a href="../../about/">About</a>
+      </nav>
+    </header>
+
+    <main class="case-layout">
+      <aside class="left-rail" aria-hidden="true">
+        <div class="rail-text">WORKS (IN PROGRESS)</div>
+      </aside>
+
+      <section class="static-panel">
+        <div class="hero-tile">
+          <div class="title">Identity Prosthesis</div>
+        </div>
+
+        <dl class="meta" aria-label="Project details">
+          <div>
+            <dt>Time</dt>
+            <dd><!-- e.g., 2024 – 2025 --></dd>
+          </div>
+          <div>
+            <dt>Place</dt>
+            <dd><!-- e.g., Barcelona / Berlin --></dd>
+          </div>
+          <div>
+            <dt>Role / Involvement</dt>
+            <dd><!-- e.g., Research & Concept Development --></dd>
+          </div>
+          <div>
+            <dt>Outcome</dt>
+            <dd><!-- e.g., Prototype / Installation / Essay --></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="scroll-pane" aria-label="Project content">
+        <div class="scroll-inner">
+          <p class="lede">
+            Introductory paragraph for *Identity Prosthesis* — describe the concept,
+            theme, and questions this work investigates.
+          </p>
+
+          <div class="framed">
+            <img src="../../images/placeholder-16x9.jpg" alt="Project image">
+          </div>
+
+          <div class="body">
+            <p>
+              Use this space for detailed text, background, research, process,
+              and visuals. You can intersperse paragraphs, images, or embedded videos.
+            </p>
+          </div>
+
+          <div class="framed">
+            <video controls preload="metadata" poster="../../images/placeholder-16x9.jpg">
+              <source src="../../videos/placeholder.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div class="body">
+            <p>
+              Wrap up with reflections or next steps for *Identity Prosthesis*.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
