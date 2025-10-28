@@ -123,41 +123,6 @@
         object-fit: cover;
         display: block;
       }
-      
-   /* Single-column stacked videos */
-.video-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 6px; /* tiny gap between videos */
-  margin: 8px 0 16px 0;
-}
-
-/* Landscape video full width */
-.video-stack .landscape {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  background: #000;
-  display: block;
-}
-
-/* Portrait video centered, narrower */
-.video-stack .portrait {
-  width: 55%;              /* adjust width if you want bigger/smaller */
-  aspect-ratio: 9 / 16;
-  margin: 0 auto;          /* centers horizontally */
-  object-fit: cover;
-  background: #000;
-  display: block;
-}
-
-/* Responsive: full width on small screens */
-@media (max-width: 800px) {
-  .video-stack .portrait {
-    width: 100%;
-  }
-}
-
 
       /* Short note under images */
       .prosthesis-note{
@@ -168,7 +133,31 @@
         line-height: 1.5;
       }
 
-      /* Optional framed media */
+      /* Framed single videos (smaller, elegant) */
+      .framed-video{
+        position: relative;
+        display: grid;
+        place-items: center;
+        background: transparent;
+        margin: 8px 0 16px 0;
+      }
+      .framed-video video{
+        width: calc(100% - 4cm); /* visible frame around video */
+        object-fit: cover;
+        display: block;
+        background: #000;
+        border: none;
+      }
+      /* Correct aspect per clip */
+      .framed-video.landscape video{ aspect-ratio: 16 / 9; }
+      .framed-video.portrait  video{ aspect-ratio: 9 / 16; }
+
+      /* On mobile, keep proportion but reduce frame */
+      @media (max-width: 800px){
+        .framed-video video{ width: calc(100% - 32px); }
+      }
+
+      /* Optional framed media for images (kept for future use) */
       .framed{ position: relative; background: transparent; border: none; aspect-ratio: 16/9; display:grid; place-items:center; }
       .framed > img, .framed > video{
         width: calc(100% - 4cm); height: calc(100% - 4cm);
@@ -242,29 +231,29 @@ The interactive reflection reveals a fragmented, delayed, or multiplied image of
           </p>
 
           <section class="triptych" aria-label="Photo series: right, front, left">
-            <figure><img src="../../images/mm_picright.PNG" alt="Identity Prosthesis — right view"></figure>
-            <figure><img src="../../images/mm_picfront.PNG" alt="Identity Prosthesis — front view"></figure>
-            <figure><img src="../../images/mmpic_left.PNG" alt="Identity Prosthesis — left view"></figure>
+            <figure><img src="../../images/mm_picright.PNG" alt="Identity Prosthesis — right view" loading="lazy"></figure>
+            <figure><img src="../../images/mm_picfront.PNG" alt="Identity Prosthesis — front view" loading="lazy"></figure>
+            <figure><img src="../../images/mmpic_left.PNG" alt="Identity Prosthesis — left view" loading="lazy"></figure>
           </section>
 
           <p class="prosthesis-note">
             A lightweight head-mounted foil arm holds a circular mirror at variable distance, creating an off-axis, delayed reflection that shifts with posture and movement. The device foregrounds mediation—how seeing oneself is always filtered through tools, frames and angles.
           </p>
 
-         <section class="video-stack" aria-label="Video section">
-  <!-- Landscape first -->
-  <video class="landscape" autoplay loop muted playsinline>
-    <source src="../../images/identity_prosthesis_landscape.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+          <!-- Videos: landscape first, then portrait; both framed smaller -->
+          <div class="framed-video landscape">
+            <video autoplay loop muted playsinline>
+              <source src="../../images/identity_prosthesis_landscape.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
-  <!-- Portrait below -->
-  <video class="portrait" autoplay loop muted playsinline>
-    <source src="../../images/identity_prosthesis_portrait.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</section>
-          
+          <div class="framed-video portrait">
+            <video autoplay loop muted playsinline>
+              <source src="../../images/identity_prosthesis_portrait.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div> <!-- /.scroll-inner -->
       </section> <!-- /.scroll-pane -->
     </main>
