@@ -133,29 +133,29 @@
         line-height: 1.5;
       }
 
-      /* Framed single videos (smaller, elegant) */
-      .framed-video{
-        position: relative;
-        display: grid;
-        place-items: center;
-        background: transparent;
-        margin: 8px 0 16px 0;
-      }
-      .framed-video video{
-        width: calc(100% - 4cm); /* visible frame around video */
-        object-fit: cover;
-        display: block;
-        background: #000;
-        border: none;
-      }
-      /* Correct aspect per clip */
-      .framed-video.landscape video{ aspect-ratio: 16 / 9; }
-      .framed-video.portrait  video{ aspect-ratio: 9 / 16; }
+/* Landscape keeps width-based sizing */
+.framed-video.landscape video{
+  width: calc(100% - 4cm);
+  aspect-ratio: 16 / 9;
+}
 
-      /* On mobile, keep proportion but reduce frame */
-      @media (max-width: 800px){
-        .framed-video video{ width: calc(100% - 32px); }
-      }
+/* Portrait: match the LANDSCAPE HEIGHT, center horizontally */
+.framed-video.portrait video{
+  /* height equals the landscape height = width * 9/16 */
+  height: calc((100% - 4cm) * 9 / 16);
+  width: auto;                 /* let width adjust from the 9:16 ratio */
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;              /* center the narrower video */
+}
+
+/* Mobile: use the smaller frame width and corresponding height */
+@media (max-width: 800px){
+  .framed-video.landscape video{ width: calc(100% - 32px); }
+  .framed-video.portrait  video{
+    height: calc((100% - 32px) * 9 / 16);
+    width: auto;
+  }
+}
 
       /* Optional framed media for images (kept for future use) */
       .framed{ position: relative; background: transparent; border: none; aspect-ratio: 16/9; display:grid; place-items:center; }
