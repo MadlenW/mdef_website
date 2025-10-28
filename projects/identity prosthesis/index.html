@@ -137,7 +137,7 @@
         .triptych {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1mm; /* minimal gap between photos */
+          gap: 0.1cm; 
         }
         
         .triptych img {
@@ -159,7 +159,17 @@
           font-size: clamp(18px, 1.6vw, 22px);
           line-height: 1.4;
         }
-        
+          
+        .reflection-text {
+          font-size: 10pt;
+          font-weight: 300;
+          color: #111;
+          line-height: 1.5;
+          max-width: 60ch;          /* keeps text in a readable column */
+          margin: 6px 0 20px 0;     /* slight gap under intro */
+          white-space: pre-line;    /* preserves line breaks / indents */
+        }
+      
         /* Responsive stacking */
         @media (max-width: 900px) {
           .triptych { grid-template-columns: repeat(2, 1fr); }
@@ -220,6 +230,16 @@
 <p class="intro">
   If I can only perceive myself through mirrors and media, then my “best version” is always a mediated construct.
   How can the self be understood if it is always projected, filtered, delayed, or distorted?
+</p>
+          
+<p class="reflection-text">
+„To become the best version of yourself“ is a contemporary mantra of self-optimization, visibility and curated identity. There are several predetermined assumptions behind this phrase: 
+	// That there is such a thing as the „best“ version, a stable ideal self.
+	// One can achieve this through control, improvement and enhancement. 
+	// This self is always reflected, on screens, in mirrors, in others’ validation
+
+This prosthesis explores how self-perception is inherently mediated through technologies of reflection such as mirrors, cameras, screens and others. In a culture obsessed with “becoming the best version of yourself,” the mirror becomes a site of both aspiration and distortion.
+The interactive reflection reveals a fragmented, delayed, or multiplied image of the self, exposing how our pursuit of perfection depends on external mediation. The prosthesis invites viewers to confront not their “best” self, but the distance between who they are and how they appear.
 </p>
 
 <section class="triptych" aria-label="Photo series: right, front, left">
