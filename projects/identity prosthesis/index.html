@@ -1,1 +1,316 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Identity Prosthesis — Madlen Wulffen</title>
+    <meta name="description" content="Project case study: Identity Prosthesis" />
 
+    <!-- Reuse your global site styles -->
+    <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
+
+    <style>
+      :root{
+        --rail: calc(1.5cm + clamp(16px,5vw,48px));
+        --panel: min(36vw, 520px);
+        --gap: clamp(12px, 2.2vw, 20px);
+        --accent:#D9043D;
+      }
+
+      /* 3-column layout */
+      .case-layout{
+        display:grid;
+        grid-template-columns: var(--rail) var(--panel) 1fr;
+        min-height:100vh;
+      }
+      .site-header{ position:sticky; top:0; z-index:50; }
+
+      /* Left rail: PROJECTS, bottom aligned, P at bottom */
+      .left-rail{
+        position: sticky; top: 0; height: 100vh;
+        border-right: none;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0 0 3cm 0;
+        background: transparent;
+      }
+      .rail-text{
+        margin: 0;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-size: clamp(22px, 4.5vw, 60px);
+      }
+
+      /* Static panel (tile + meta) */
+      .static-panel{
+        position: sticky; top: 0; height: 100vh;
+        border-right: none;
+        display:flex; flex-direction:column;
+        padding: 6px 0 14px 0;
+        gap: var(--gap);
+        background: transparent;
+      }
+      .hero-tile{
+        width: calc(100% - 2cm);
+        aspect-ratio: 1 / 1;
+        background: var(--accent);
+        border: none;
+        display:grid; place-items:center;
+        text-align:center; color:#fff;
+        padding: 20px;
+        margin: 1cm;
+      }
+      .hero-tile .title{
+        font-weight: 900;
+        font-size: clamp(20px, 2.4vw, 32px);
+        line-height: 1.1;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+      }
+      .meta{
+        margin-left: 1cm;
+        max-width: calc(100% - 2cm);
+        font-size: 16px;
+        color: #111;
+        display:grid; gap: 10px;
+        text-align: left;
+      }
+      .meta dt{ font-weight: 600; margin: 0 0 2px 0; }
+      .meta dd{ margin: 0 0 14px 0; border: none; min-height: 1.6em; }
+
+      /* Scrollable content (right column) */
+      .scroll-pane{
+        min-height:100vh;
+        overflow:auto;
+        padding: calc(6px + 1cm) 40px 40px 0; /* aligns top with tile */
+      }
+      .scroll-inner{
+        display:grid;
+        gap: clamp(8px, 1.6vw, 18px); /* tighter default vertical rhythm */
+        border-left: none;
+        padding-left: 0;
+      }
+
+      .scroll-inner h2 { margin: 0 0 2px 0; font-weight: 800; }
+      .scroll-inner p.intro { margin: 0 0 6px 0; }
+
+      /* Reflection paragraph (small, thin) */
+      .reflection-text{
+        margin: 0 0 10px 0;
+        font-size: 10pt;
+        font-weight: 300;
+        color: #111;
+        line-height: 1.5;
+        width: 100%;
+        white-space: pre-line;
+      }
+
+      /* Triptych: almost touching; big images */
+      .triptych{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        margin: 4px 0 6px 0;
+      }
+      .triptych img{
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Short note under images */
+      .prosthesis-note{
+        margin: 2px 0 12px 0;
+        font-size: 10pt;
+        font-weight: 300;
+        color: #111;
+        line-height: 1.5;
+      }
+
+      /* Framed single videos (smaller, elegant) */
+      .framed-video{
+        position: relative;
+        display: grid;
+        place-items: center;
+        background: transparent;
+        margin: 8px 0 16px 0;
+      }
+      .framed-video video{
+        width: calc(100% - 4cm); /* visible frame around video */
+        object-fit: cover;
+        display: block;
+        background: #000;
+        border: none;
+      }
+      /* Correct aspect per clip */
+      .framed-video.landscape video{ aspect-ratio: 16 / 9; }
+      .framed-video.portrait  video{ aspect-ratio: 9 / 16; }
+
+      /* On mobile, keep proportion but reduce frame */
+      @media (max-width: 800px){
+        .framed-video video{ width: calc(100% - 32px); }
+      }
+
+      /* Optional framed media for images (kept for future use) */
+      .framed{ position: relative; background: transparent; border: none; aspect-ratio: 16/9; display:grid; place-items:center; }
+      .framed > img, .framed > video{
+        width: calc(100% - 4cm); height: calc(100% - 4cm);
+        object-fit: cover; background: #f6f6f6; border: none;
+      }
+      @media (max-width: 800px){
+        .framed > img, .framed > video{ width: calc(100% - 32px); height: auto; aspect-ratio: 16/9; }
+      }
+
+      /* Responsive */
+      @media(max-width:980px){
+        .case-layout{ grid-template-columns: var(--rail) 1fr; }
+        .static-panel{ position: static; height: auto; }
+        .meta{ margin-left: 0; max-width: 100%; }
+        .scroll-pane{ overflow: visible; padding-left: 0; padding-right: clamp(16px,5vw,48px); }
+        .hero-tile{ width: 100%; margin: 0; }
+      }
+      @media (max-width: 900px){ .triptych{ grid-template-columns: repeat(2,1fr); } }
+      @media (max-width: 600px){ .triptych{ grid-template-columns: 1fr; } }
+
+      /* POV Visions Eyedrops section */
+.pov-section {
+  margin-top: 48px; /* ~3cm space between video and title */
+  text-align: left;
+}
+
+.pov-section h2 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 16px; /* space between title and intro */
+  text-align: left;
+}
+
+.pov-section p.intro {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+    </style>
+  </head>
+
+  <body>
+    <!-- Header (same as home) -->
+    <header class="site-header">
+      <a class="logo-mark" href="../../index.html" aria-label="Home"></a>
+      <nav class="site-nav">
+        <a href="../../projects/">Projects</a>
+        <a href="../../thinking-space/">Thinking Space</a>
+        <a href="../../about/">About</a>
+      </nav>
+    </header>
+
+    <main class="case-layout">
+      <!-- Left rail -->
+      <aside class="left-rail" aria-hidden="true">
+        <div class="rail-text">PROJECTS</div>
+      </aside>
+
+      <!-- Static panel: inset square tile + aligned meta -->
+      <section class="static-panel">
+        <div class="hero-tile">
+          <div class="title">Identity Prosthesis</div>
+        </div>
+
+        <dl class="meta" aria-label="Project details">
+          <div><dt>Time</dt><dd>28/10/2025 - 31/10/2025</dd></div>
+          <div><dt>Purpose</dt><dd>Prototype Exploration</dd></div>
+          <div><dt>Role</dt><dd>Research & Concept Development</dd></div>
+          <div><dt>Outcome</dt><dd><!-- e.g., Installation / Publication / Pilot --></dd></div>
+        </dl>
+      </section>
+
+      <!-- Scrollable right column -->
+      <section class="scroll-pane" aria-label="Project content">
+        <div class="scroll-inner">
+          <h2>The Mediated Self</h2>
+          <p class="intro">
+            If I can only perceive myself through mirrors and media, then my “best version” is always a mediated construct.
+            How can the self be understood if it is always projected, filtered, delayed, or distorted?
+          </p>
+
+          <p class="reflection-text">
+„To become the best version of yourself“ is a contemporary mantra of self-optimization, visibility and curated identity. There are several predetermined assumptions behind this phrase:
+  // That there is such a thing as the „best“ version, a stable ideal self.
+  // One can achieve this through control, improvement and enhancement.
+  // This self is always reflected, on screens, in mirrors, in others’ validation
+
+This prosthesis explores how self-perception is inherently mediated through technologies of reflection such as mirrors, cameras, screens and others. In a culture obsessed with “becoming the best version of yourself,” the mirror becomes a site of both aspiration and distortion.
+The interactive reflection reveals a fragmented, delayed, or multiplied image of the self, exposing how our pursuit of perfection depends on external mediation. The prosthesis invites viewers to confront not their “best” self, but the distance between who they are and how they appear.
+          </p>
+
+          <section class="triptych" aria-label="Photo series: right, front, left">
+            <figure><img src="../../images/mm_picright.PNG" alt="Identity Prosthesis — right view" loading="lazy"></figure>
+            <figure><img src="../../images/mm_picfront.PNG" alt="Identity Prosthesis — front view" loading="lazy"></figure>
+            <figure><img src="../../images/mmpic_left.PNG" alt="Identity Prosthesis — left view" loading="lazy"></figure>
+          </section>
+
+          <p class="prosthesis-note">
+            A lightweight head-mounted foil arm holds a circular mirror at variable distance, creating an off-axis, delayed reflection that shifts with posture and movement. The device foregrounds mediation—how seeing oneself is always filtered through tools, frames and angles.
+          </p>
+
+          <!-- Videos: landscape first, then portrait; both framed smaller -->
+          <div class="framed-video landscape">
+            <video autoplay loop muted playsinline>
+              <source src="../../images/identity_prosthesis_landscape.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div class="framed-video portrait">
+            <video autoplay loop muted playsinline>
+              <source src="../../images/identity_prosthesis_portrait.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+
+ <section class="scroll-pane" aria-label="Project content">
+        <div class="scroll-inner">
+          <h2>POV Visions Eyedrops</h2>
+          <p class="intro">
+           What if becoming something else isn’t about control, but about letting go?  
+          What if we could experience other species and non-living beings through vision, instead of just imagine it?
+          </p>
+
+          <p class="reflection-text">
+POV Vision Eyedrops are speculative prostheses that allow a human to perceive the world through the eyes of another species, a fish, a sheep, a raindrop, a piece of dust. Each drop alters your perceptual system, shifting your visual, emotional, and spatial understanding for a brief period of time.
+You cannot choose whose eyes you’ll borrow; the selection emerges from your geographical, cultural, and ecological proximity. A person living near the sea might see through a jellyfish, while someone in a dense urban fabric might see as a pigeon or a rat. The transformation is unpredictable but contextually grounded.
+          </p>
+
+          <section class="triptych" aria-label="Photo series: right, front, left">
+            <figure><img src="../../images/pov-left.jpg" alt="POV Visions Eyedrops — left view" loading="lazy"></figure>
+            <figure><img src="../../images/pov-front.jpg" alt="POV Visions Eyedrops — front view" loading="lazy"></figure>
+            <figure><img src="../../images/pov-right.jpg" alt="POV Visions Eyedrops — right view" loading="lazy"></figure>
+          </section>
+
+           <div class="framed-video landscape">
+            <video autoplay loop muted playsinline>
+              <source src="../../images/povvisionsmontage.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div class="framed-video landscape">
+            <video autoplay loop muted playsinline>
+              <source src="../../images/povvisionsworks.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+            
+          </div>
+        </div> <!-- /.scroll-inner -->
+      </section> <!-- /.scroll-pane -->
+    </main>
+  </body>
+</html>
