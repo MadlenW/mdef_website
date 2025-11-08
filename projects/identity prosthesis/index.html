@@ -95,27 +95,28 @@
       /* =======================
          Article block in RIGHT column
          ======================= */
-      .article-block{
-        /* first item in right column content */
-        margin: 0 0 2.5rem 0;
+      .article-block {
+  margin: 0 0 2.5rem 0;
+  column-count: 2;
+  column-gap: 2.4rem;
+  column-fill: balance;
+  text-align: justify;
+  line-height: 1.6;
+  font-size: 11pt;
+  /* NEW: make columns start aligned */
+  break-inside: avoid;
+}
 
-        /* two-column typesetting */
-        column-count: 2;
-        column-gap: 2.4rem;
-        column-fill: balance;
+.article-block h1 {
+  column-span: all;
+  margin: 0 0 0.8rem 0; /* reduce bottom margin */
+  padding-bottom: 0.3rem; /* subtle space but keeps columns flush */
+  font-weight: 900;
+  font-size: clamp(22px, 2.6vw, 32px);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
 
-        text-align: justify;
-        line-height: 1.6;
-        font-size: 11pt;
-      }
-      .article-block h1{
-        column-span: all;
-        margin: 0 0 1.5rem 0;
-        font-weight: 900;
-        font-size: clamp(22px, 2.6vw, 32px);
-        letter-spacing: .02em;
-        text-transform: uppercase;
-      }
 
       /* Mobile: fall back to single column for readability */
       @media (max-width: 900px){
