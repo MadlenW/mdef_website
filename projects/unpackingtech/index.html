@@ -50,7 +50,7 @@
       .hero-tile .title{
         font-weight: 900; font-size: clamp(20px, 2.4vw, 32px);
         line-height: 1.1; letter-spacing: .03em; text-transform: uppercase;
-        text-align: center; /* 1) center text in tile */
+        text-align: center; /* centered text */
       }
       .meta{
         margin-left: 1cm; max-width: calc(100% - 2cm);
@@ -83,6 +83,8 @@
         line-height: 1.6;
         font-size: 11pt;
         break-inside: avoid;
+        /* alignment tweak so both columns start on same baseline */
+        padding-top: 0.2rem;
       }
 
       .article-block h1 {
@@ -98,11 +100,16 @@
 
       .article-subhead{
         column-span: all;
-        margin: 0 0 1.1rem 0;
+        margin: 0 0 0.6rem 0; /* reduced so columns align better */
         font-size: 10pt;
         font-weight: 500;
         letter-spacing: .08em;
         text-transform: uppercase;
+      }
+
+      /* remove extra top margin from very first paragraph */
+      .article-block p:first-of-type{
+        margin-top: 0;
       }
 
       /* Mobile: fall back to single column for readability */
@@ -213,7 +220,6 @@
 
           <!-- ARTICLE (two columns) — REFLECTION -->
           <article class="article-block">
-            <!-- 5) new headline + subheadline -->
             <h1>Reading Machines From The Inside Out</h1>
             <p class="article-subhead">Week 1 reflections</p>
 
