@@ -14,7 +14,8 @@
         --rail: calc(1.5cm + clamp(16px,5vw,48px));
         --panel: min(36vw, 520px);
         --gap: clamp(12px, 2.2vw, 20px);
-        --accent:#D9043D;
+        /* 1) change accent to the dark navy from projects page */
+        --accent:#273859;
       }
 
       /* 3-column layout */
@@ -39,7 +40,10 @@
 
       /* Static panel (tile + meta) */
       .static-panel{
-        position: sticky; top: 0; height: 100vh;
+        position: sticky; top: 0;
+        /* 3) allow scrolling inside panel so links are reachable */
+        max-height: 100vh;
+        overflow-y: auto;
         display:flex; flex-direction:column; gap: var(--gap);
         padding: 6px 0 14px 0; background: transparent;
       }
@@ -57,6 +61,16 @@
       }
       .meta dt{ font-weight: 600; margin: 0 0 2px 0; }
       .meta dd{ margin: 0 0 14px 0; min-height: 1.6em; }
+
+      /* 3) make links black instead of blue */
+      .meta a{
+        color: #000;
+        text-decoration: none;
+        border-bottom: 1px solid #000;
+      }
+      .meta a:visited{
+        color: #000;
+      }
 
       /* Scrollable content (right column) */
       .scroll-pane{ min-height:100vh; overflow:auto; padding: calc(6px + 1cm) 40px 40px 0; }
@@ -90,8 +104,10 @@
         padding-bottom: 0.3rem;
         font-weight: 900;
         font-size: clamp(22px, 2.6vw, 32px);
-        letter-spacing: .02em;
         text-transform: uppercase;
+        letter-spacing: .02em;
+        /* 4) fix weird spacing: don’t justify the heading */
+        text-align: left;
       }
 
       /* Mobile: fall back to single column for readability */
@@ -143,9 +159,14 @@
       /* MacBook image block */
       .reflection-image{
         margin: 0 0 2.5rem 0;
+        /* 5) center image in the right column */
+        display: flex;
+        justify-content: center;
       }
       .reflection-image figure{
-        margin: 0;
+        margin: 0 auto;
+        max-width: 80%;
+        text-align: center;
       }
       .reflection-image img{
         display:block;
@@ -185,10 +206,11 @@
         </div>
 
         <dl class="meta" aria-label="Project details">
-          <div><dt>Time</dt><dd>November 2025</dd></div>
+          <div><dt>Time</dt><dd>18th Nov - 28th Nov 2025</dd></div>
           <div><dt>Context</dt><dd>Unpacking Tech Systems — Weekly Reflection</dd></div>
-          <div><dt>Role</dt><dd>Group Collaboration, Analysis & Documentation</dd></div>
-          <div><dt>Links</dt>
+          <div><dt>Role</dt><dd>Group Collaboration, Analysis &amp; Documentation</dd></div>
+          <div>
+            <dt>Links</dt>
             <dd>
               <a href="https://hackmd.io/@M_mbpDG9RfCkv3Hh2okOvw/BkdWfLolbe" target="_blank" rel="noopener noreferrer">Forensic Report</a><br>
               <a href="https://hackmd.io/@L3g4HxxGRESszjwULqN-VQ/Hk5_Kphe-e" target="_blank" rel="noopener noreferrer">Component Data Sheet</a><br>
@@ -202,9 +224,7 @@
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
 
-          <!-- ===============================
-               ARTICLE (two columns) — REFLECTION
-               =============================== -->
+          <!-- ARTICLE (two columns) — REFLECTION -->
           <article class="article-block">
             <h1>Unpacking Tech Systems — Weekly Reflection</h1>
 
@@ -228,9 +248,7 @@
             </p>
           </article>
 
-          <!-- ===============================
-               SIMPLE PROCESS DIAGRAM
-               =============================== -->
+          <!-- SIMPLE PROCESS DIAGRAM -->
           <section class="process-diagram" aria-label="Process diagram: from documents to insight">
             <div class="diagram-row">
               <div class="diagram-node">
@@ -262,14 +280,12 @@
               <div class="diagram-node">
                 <strong>Reflection</strong>
                 From using devices to questioning them<br>
-                New possibilities for repair & critique
+                New possibilities for repair &amp; critique
               </div>
             </div>
           </section>
 
-          <!-- ===============================
-               IMAGE: MACBOOK
-               =============================== -->
+          <!-- IMAGE: MACBOOK -->
           <section class="reflection-image" aria-label="MacBook teardown image">
             <figure>
               <img src="../../images/macbook.png" alt="Unpacked MacBook with its internal components laid out." loading="lazy">
@@ -284,4 +300,3 @@
     </main>
   </body>
 </html>
-
