@@ -237,6 +237,34 @@
         text-align: center;
         color:#666;
       }
+
+      /* Meluza 3-image portrait gallery */
+.meluza-gallery{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 0 2.5rem 0;
+}
+
+.meluza-gallery figure{
+  margin: 0;
+}
+
+.meluza-gallery img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px; /* optional soft rounding */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* Mobile: stack images */
+@media (max-width: 800px){
+  .meluza-gallery{
+    grid-template-columns: 1fr;
+  }
+}
+
     </style>
   </head>
 
@@ -428,5 +456,19 @@
         }
       })();
     </script>
+
+    <!-- WEEK 2 GALLERY -->
+<section class="meluza-gallery" aria-label="Meluza portrait gallery">
+  <figure>
+    <img src="../images/meluza1.jpeg" alt="Meluza prototype photo 1" loading="lazy">
+  </figure>
+  <figure>
+    <img src="../images/meluza2.jpeg" alt="Meluza prototype photo 2" loading="lazy">
+  </figure>
+  <figure>
+    <img src="../images/meluza3.jpeg" alt="Meluza prototype photo 3" loading="lazy">
+  </figure>
+</section>
+
   </body>
 </html>
