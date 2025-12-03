@@ -44,17 +44,32 @@
         padding: 6px 0 14px 0; background: transparent;
       }
       .hero-tile{
-        width: calc(100% - 2cm); aspect-ratio: 1 / 1; background: var(--accent);
-        display:grid; place-items:center; color:#fff; padding: 20px; margin: 1cm;
+        width: calc(100% - 2cm);
+        aspect-ratio: 1 / 1;
+        background: var(--accent);
+        display:grid;
+        place-items:center;
+        color:#fff;
+        padding: 20px;
+        margin: 1cm;
       }
       .hero-tile .title{
-        font-weight: 900; font-size: clamp(20px, 2.4vw, 32px);
-        line-height: 1.1; letter-spacing: .03em; text-transform: uppercase;
-        text-align: center;
+        font-weight: 900;
+        font-size: clamp(20px, 2.4vw, 32px);
+        line-height: 1.1;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+        text-align:center;
       }
+
       .meta{
-        margin-left: 1cm; max-width: calc(100% - 2cm);
-        font-size: 16px; color: #111; display:grid; gap: 10px; text-align: left;
+        margin-left: 1cm;
+        max-width: calc(100% - 2cm);
+        font-size: 16px;
+        color: #111;
+        display:grid;
+        gap: 10px;
+        text-align: left;
       }
       .meta dt{ font-weight: 600; margin: 0 0 2px 0; }
       .meta dd{ margin: 0 0 14px 0; min-height: 1.6em; }
@@ -63,38 +78,34 @@
       .scroll-pane{ min-height:100vh; overflow:auto; padding: calc(6px + 1cm) 40px 40px 0; }
       .scroll-inner{ display:grid; gap: clamp(8px, 1.6vw, 18px); }
 
-      .scroll-inner h2 { margin: 0 0 2px 0; font-weight: 800; }
-      .scroll-inner p.intro { margin: 0 0 6px 0; }
-
-      /* Body text small/thin */
       .reflection-text{
-        margin: 0 0 10px 0; font-size: 10pt; font-weight: 300; color: #111; line-height: 1.5; white-space: pre-line;
+        margin: 0 0 10px 0;
+        font-size: 10pt;
+        font-weight: 300;
+        color: #111;
+        line-height: 1.5;
+        white-space: pre-line;
       }
 
-      /* =======================
-         Article block in RIGHT column
-         ======================= */
+      /* ===========================
+         Article block
+         =========================== */
       .article-block {
         margin: 0 0 2.5rem 0;
         column-count: 2;
         column-gap: 2.4rem;
-        column-fill: balance;
-        text-align: justify;
         line-height: 1.6;
         font-size: 11pt;
         break-inside: avoid;
-        padding-top: 0.2rem; /* helps column alignment */
+        text-align: justify;
       }
 
       .article-block h1 {
         column-span: all;
         margin: 0 0 0.4rem 0;
-        padding-bottom: 0.1rem;
         font-weight: 900;
         font-size: clamp(22px, 2.6vw, 32px);
         text-transform: uppercase;
-        letter-spacing: .02em;
-        text-align: left;
       }
 
       .article-subhead{
@@ -106,18 +117,13 @@
         text-transform: uppercase;
       }
 
-      .article-block p:first-of-type{
-        margin-top: 0;
-      }
-
-      /* Mobile: fall back to single column for readability */
       @media (max-width: 900px){
         .article-block{ column-count: 1; }
       }
 
-      /* =======================
-         Simple process diagram
-         ======================= */
+      /* ===========================
+         Diagram
+         =========================== */
       .process-diagram{
         margin: 0 0 1.8rem 0;
         font-size: 10pt;
@@ -156,7 +162,7 @@
         flex: 0 0 auto;
       }
 
-      /* MacBook image block */
+      /* MacBook image */
       .reflection-image{
         margin: 0 0 2.5rem 0;
         display: flex;
@@ -179,14 +185,9 @@
         color:#444;
       }
 
-      /* small extra spacing before Week 2 block */
-      .week2-block{
-        margin-top: 1.5rem;
-      }
-
-      /* =======================
-         ZINE VIEWER (Week 2)
-         ======================= */
+      /* ===========================
+         ZINE VIEWER
+         =========================== */
       .zine-viewer{
         margin: 0 0 2.5rem 0;
       }
@@ -205,8 +206,8 @@
       }
 
       .zine-page img{
+        width: 100%;
         display:block;
-        width:100%;
         height:auto;
       }
 
@@ -217,12 +218,8 @@
         border-radius: 999px;
         font-size: 14px;
         cursor: pointer;
-        line-height: 1;
       }
-
-      .zine-arrow:hover{
-        background:#e5e5e5;
-      }
+      .zine-arrow:hover{ background:#e5e5e5; }
 
       .zine-caption{
         margin-top: 6px;
@@ -238,38 +235,39 @@
         color:#666;
       }
 
-      /* Meluza 3-image portrait gallery */
-.meluza-gallery{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 0 0 2.5rem 0;
-}
+      /* ===========================
+         MELUZA GALLERY (3 images)
+         =========================== */
+      .meluza-gallery{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin: 0 0 2.5rem 0;
+      }
 
-.meluza-gallery figure{
-  margin: 0;
-}
+      .meluza-gallery figure{
+        margin: 0;
+      }
 
-.meluza-gallery img{
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px; /* optional soft rounding */
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
+      .meluza-gallery img{
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 6px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      }
 
-/* Mobile: stack images */
-@media (max-width: 800px){
-  .meluza-gallery{
-    grid-template-columns: 1fr;
-  }
-}
+      @media (max-width: 800px){
+        .meluza-gallery{
+          grid-template-columns: 1fr;
+        }
+      }
 
     </style>
   </head>
 
   <body>
-    <!-- Header (same as home) -->
+    <!-- Header -->
     <header class="site-header">
       <a class="logo-mark" href="../../index.html" aria-label="Home"></a>
       <nav class="site-nav">
@@ -280,56 +278,52 @@
     </header>
 
     <main class="case-layout">
-      <!-- Left rail -->
+
+      <!-- Left Rail -->
       <aside class="left-rail" aria-hidden="true">
         <div class="rail-text">PROJECTS</div>
       </aside>
 
-      <!-- Static panel -->
+      <!-- Static Panel -->
       <section class="static-panel">
         <div class="hero-tile">
           <div class="title">Unpacking Tech Systems</div>
         </div>
 
-        <dl class="meta" aria-label="Project details">
-          <div><dt>Time</dt><dd>18/11/2025 - 28/11/2025</dd></div>
+        <dl class="meta">
+          <div><dt>Time</dt><dd>18/11/2025 – 28/11/2025</dd></div>
           <div><dt>Context</dt><dd>Unpacking Tech Systems — Weekly Reflection</dd></div>
           <div><dt>Role</dt><dd>Group Collaboration, Analysis &amp; Documentation</dd></div>
-          <div><dt>Outcome</dt><dd>Rapid Prototyping of Technological Artifacts</dd></div>
+          <div><dt>Outcome</dt><dd>Rapid Prototyping of Technological Artefacts</dd></div>
         </dl>
       </section>
 
-      <!-- Scrollable right column -->
-      <section class="scroll-pane" aria-label="Project content">
+      <!-- Right Scroll Column -->
+      <section class="scroll-pane">
         <div class="scroll-inner">
 
-          <!-- WEEK 1 ARTICLE -->
+          <!-- WEEK 1 -->
           <article class="article-block">
             <h1>Reading Machines From The Inside Out</h1>
             <p class="article-subhead">Week 1 reflections</p>
 
             <p>
               This week we shifted our attention from using technology to reading it as a system. Together with my group, we disassembled a familiar device and traced its internal logic through three shared documents: the
-              <a href="https://hackmd.io/@M_mbpDG9RfCkv3Hh2okOvw/BkdWfLolbe" target="_blank" rel="noopener noreferrer">Forensic Report</a>,
+              <a href="https://hackmd.io/@M_mbpDG9RfCkv3Hh2okOvw/BkdWfLolbe" target="_blank">Forensic Report</a>,
               the
-              <a href="https://hackmd.io/@L3g4HxxGRESszjwULqN-VQ/Hk5_Kphe-e" target="_blank" rel="noopener noreferrer">Component Data Sheet</a>
+              <a href="https://hackmd.io/@L3g4HxxGRESszjwULqN-VQ/Hk5_Kphe-e" target="_blank">Component Data Sheet</a>,
               and the
-              <a href="https://docs.google.com/spreadsheets/d/1nhxFCAaLnu5iB0xfygtxfu7oa6Qrs6oYqWyNHF1m7AE/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">Inventory</a>.
-              What looked like a closed, seamless product quickly fragmented into screws, chips, cables and invisible dependencies.
+              <a href="https://docs.google.com/spreadsheets/d/1nhxFCAaLnu5iB0xfygtxfu7oa6Qrs6oYqWyNHF1m7AE/edit?gid=0#gid=0" target="_blank">Inventory</a>.
             </p>
 
             <p>
-              Contributing to the forensic report made me slow down: instead of naming parts, I had to describe behaviours, relations and failure points. The component data sheet pushed this further by asking what each part
-              <em>affords</em> within the broader system — and what breaks if it is missing. The inventory then grounded everything in a more logistical view: quantities, categories and hierarchies.
-            </p>
-
-            <p>
-              Personally, this exercise shifted my perspective from “device as object” to “device as layered infrastructure”. I became more aware of how many human and material decisions are hidden under a single aluminium surface. It also highlighted how documentation can be a design act in itself: depending on how we map a system, different forms of repair, reuse or critique become thinkable.
+              Contributing to the forensic report made me slow down: instead of naming parts, I had to describe behaviours, relations and failure points.
+              This shifted my perspective from “device as object” to “device as layered infrastructure.”
             </p>
           </article>
 
-          <!-- WEEK 1 PROCESS DIAGRAM -->
-          <section class="process-diagram" aria-label="Process diagram: from exploration to reflection">
+          <!-- PROCESS DIAGRAM -->
+          <section class="process-diagram">
             <div class="diagram-row">
               <div class="diagram-node">
                 <strong>Process</strong>
@@ -343,7 +337,7 @@
               <div class="diagram-node">
                 <strong>System View</strong>
                 Hidden dependencies become visible<br>
-                Technical object becomes layered system
+                Technical object becomes layered
               </div>
 
               <div class="diagram-arrow">→</div>
@@ -359,116 +353,96 @@
 
               <div class="diagram-node">
                 <strong>Reflection</strong>
-                From using devices to questioning them<br>
-                New possibilities for repair &amp; critique
+                Questioning devices<br>
+                New repair perspectives
               </div>
             </div>
           </section>
 
           <!-- WEEK 1 IMAGE -->
-          <section class="reflection-image" aria-label="MacBook teardown image">
+          <section class="reflection-image">
             <figure>
-              <img src="../../images/macbook.png" alt="Unpacked MacBook with its internal components laid out." loading="lazy">
-              <figcaption>
-                Mapping the MacBook as a system of interdependent parts rather than a single, closed object.
-              </figcaption>
+              <img src="../images/macbook.png" alt="">
+              <figcaption>Mapping the MacBook as a system of interdependent parts.</figcaption>
             </figure>
           </section>
 
-          <!-- WEEK 2 ARTICLE -->
-          <article class="article-block week2-block">
+          <!-- WEEK 2 -->
+          <article class="article-block">
             <h1>Performing The Machine Paradox</h1>
             <p class="article-subhead">Week 2 reflections — Meluza</p>
 
             <p>
-              This week we shifted from analysing existing devices to building one — not to improve functionality, but to challenge the logic that demands it. Our project, <strong>Meluza</strong>, emerged as a response to the <em>machine paradox</em>: the expectation that every machine should be purposeful, efficient and obedient, contrasted with our desire to break, twist or subvert that expectation. By constructing a deceptive, “useless” machine, we probed what happens when a device resists the very behaviours we project onto it.
+              This week we shifted from analysing existing devices to building one — not to improve functionality, but to challenge the logic that demands it. Our project <strong>Meluza</strong> emerged as a response to the
+              <em>machine paradox</em>: the expectation that machines should be purposeful and efficient versus our desire to disrupt that expectation.
             </p>
 
             <p>
-              Meluza performs this paradox through misdirection: it appears to invite interaction, yet its internal behaviour disrupts predictable cause-and-effect. Instead of revealing how it works, it actively conceals its logic, producing small moments of confusion, humour or irritation. In this sense, Meluza becomes a commentary on technological trust — how quickly we assume machines are rational, transparent or aligned with our intentions, and how fragile that assumption is when confronted with opacity.
+              Instead of fulfilling user intention, Meluza misbehaves. It invites interaction but resists predictability, creating small moments of confusion or humour. This useless machine exposes how quickly we assume
+              that machines should behave rationally — revealing the fragility of technological trust.
             </p>
 
             <p>
-              What interested me most was how a useless machine can still be meaningful. By refusing productivity, Meluza exposes the cultural scripts embedded in our relationship with technology. It opens space to reconsider machines not only as tools but as actors with their own behaviours, rhythms and unpredictabilities. Our short
-              <a href="https://docs.google.com/presentation/d/1yEwyA1XbDtHeK4ixy4tmtcUPgdfOU9xSFolHBjHSZMg/edit?slide=id.p#slide=id.p" target="_blank" rel="noopener noreferrer">presentation</a>
-              and accompanying
-              <a href="https://drive.google.com/drive/u/1/folders/1K-6qwBqmdt5MfRVEnAe-otvTsYn_Sbk-" target="_blank" rel="noopener noreferrer">video documentation</a>
-              capture how Meluza stages this tension between expectation and resistance — a playful entry point into deeper questions about agency, autonomy and the narratives we build around machines.
+              Our short
+              <a href="https://docs.google.com/presentation/d/1yEwyA1XbDtHeK4ixy4tmtcUPgdfOU9xSFolHBjHSZMg/edit" target="_blank">presentation</a>
+              and
+              <a href="https://drive.google.com/drive/u/1/folders/1K-6qwBqmdt5MfRVEnAe-otvTsYn_Sbk-" target="_blank">video documentation</a>
+              capture how Meluza stages this playful but critical tension between expectation and resistance.
             </p>
           </article>
 
-          <!-- WEEK 2 ZINE VIEWER -->
-          <section class="zine-viewer" aria-label="Week 2 zine: Machine Paradox & Meluza">
+          <!-- ZINE VIEWER -->
+          <section class="zine-viewer">
             <div class="zine-frame">
-              <button class="zine-arrow zine-arrow-left" aria-label="Previous page">←</button>
+              <button class="zine-arrow zine-arrow-left">←</button>
 
               <div class="zine-page">
-                <!-- Start with cover; JS swaps src for other spreads -->
-                <img src="../../images/zine-cover.jpg" alt="Week 2 zine, cover" loading="lazy">
+                <img src="../images/zine-cover.jpg" alt="Zine cover">
               </div>
 
-              <button class="zine-arrow zine-arrow-right" aria-label="Next page">→</button>
+              <button class="zine-arrow zine-arrow-right">→</button>
             </div>
-            <p class="zine-caption">Week 2 zine — Machine Paradox &amp; Meluza</p>
+            <p class="zine-caption">Week 2 Zine Machine Paradox & Meluza</p>
             <p class="zine-page-indicator">Page 1 of 5</p>
           </section>
 
-        </div> <!-- /.scroll-inner -->
-      </section> <!-- /.scroll-pane -->
+          <!-- MELUZA GALLERY -->
+          <section class="meluza-gallery">
+            <figure><img src="../images/meluza1.jpeg" alt=""></figure>
+            <figure><img src="../images/meluza2.jpeg" alt=""></figure>
+            <figure><img src="../images/meluza3.jpeg" alt=""></figure>
+          </section>
+
+        </div>
+      </section>
     </main>
 
-    <!-- Simple JS page flipper for zine -->
+    <!-- ZINE SCRIPT -->
     <script>
       (function(){
-        // Update these filenames if yours differ
         const pages = [
-          "../../images/zine-cover.jpg",
-          "../../images/zine-spread-1.jpg",
-          "../../images/zine-spread-2.jpg",
-          "../../images/zine-spread-3.jpg",
-          "../../images/zine-back.jpg"
+          "../images/zine-cover.jpg",
+          "../images/zine-spread-1.jpg",
+          "../images/zine-spread-2.jpg",
+          "../images/zine-spread-3.jpg",
+          "../images/zine-back.jpg"
         ];
 
         let index = 0;
-        const img   = document.querySelector('.zine-page img');
-        const prev  = document.querySelector('.zine-arrow-left');
-        const next  = document.querySelector('.zine-arrow-right');
+        const img = document.querySelector('.zine-page img');
+        const prev = document.querySelector('.zine-arrow-left');
+        const next = document.querySelector('.zine-arrow-right');
         const indicator = document.querySelector('.zine-page-indicator');
 
-        function updatePage(){
+        function update(){
           img.src = pages[index];
-          img.alt = "Week 2 zine, page " + (index + 1);
-          if (indicator){
-            indicator.textContent = "Page " + (index + 1) + " of " + pages.length;
-          }
+          indicator.textContent = `Page ${index+1} of ${pages.length}`;
         }
 
-        if (prev && next && img){
-          prev.addEventListener('click', function(){
-            index = (index - 1 + pages.length) % pages.length;
-            updatePage();
-          });
-
-          next.addEventListener('click', function(){
-            index = (index + 1) % pages.length;
-            updatePage();
-          });
-        }
+        prev.onclick = () => { index = (index - 1 + pages.length) % pages.length; update(); };
+        next.onclick = () => { index = (index + 1) % pages.length; update(); };
       })();
     </script>
-
-    <!-- WEEK 2 GALLERY -->
-<section class="meluza-gallery" aria-label="Meluza portrait gallery">
-  <figure>
-    <img src="../images/meluza1.jpeg" alt="Meluza prototype photo 1" loading="lazy">
-  </figure>
-  <figure>
-    <img src="../images/meluza2.jpeg" alt="Meluza prototype photo 2" loading="lazy">
-  </figure>
-  <figure>
-    <img src="../images/meluza3.jpeg" alt="Meluza prototype photo 3" loading="lazy">
-  </figure>
-</section>
 
   </body>
 </html>
