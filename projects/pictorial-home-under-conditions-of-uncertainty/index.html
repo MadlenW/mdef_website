@@ -14,7 +14,7 @@
         --rail: calc(1.5cm + clamp(16px,5vw,48px));
         --panel: min(36vw, 520px);
         --gap: clamp(12px, 2.2vw, 20px);
-        --accent:#6A8BAE; /* placeholder accent (sky) */
+        --accent:#6A8BAE; /* sky */
       }
 
       /* 3-column layout */
@@ -48,7 +48,7 @@
         display:grid; place-items:center; color:#111; padding: 20px; margin: 1cm;
       }
       .hero-tile .title{
-        font-weight: 900; font-size: clamp(20px, 2.4vw, 32px);
+        font-weight: 900; font-size: clamp(18px, 2.2vw, 30px);
         line-height: 1.1; letter-spacing: .03em; text-transform: uppercase;
         text-align: center;
       }
@@ -67,7 +67,12 @@
       .scroll-inner p.intro { margin: 0 0 6px 0; }
 
       .reflection-text{
-        margin: 0 0 10px 0; font-size: 10pt; font-weight: 300; color: #111; line-height: 1.5; white-space: pre-line;
+        margin: 0 0 10px 0;
+        font-size: 10pt;
+        font-weight: 300;
+        color: #111;
+        line-height: 1.5;
+        white-space: pre-line;
       }
 
       /* =======================
@@ -113,7 +118,9 @@
         .article-block{ column-count: 1; }
       }
 
-      /* Optional media blocks if you want later */
+      /* =======================
+         Scenario image (same style as other pages)
+         ======================= */
       .reflection-image{
         margin: 0 0 1.8rem 0;
         display: flex;
@@ -158,5 +165,71 @@
       <!-- Static panel -->
       <section class="static-panel">
         <div class="hero-tile">
-          <div class="title">Pictorial // Home Under Conditi
+          <div class="title">Pictorial // Home Under Conditions of Uncertainty</div>
+        </div>
 
+        <dl class="meta" aria-label="Project details">
+          <div><dt>Time</dt><dd>2025</dd></div>
+          <div><dt>Context</dt><dd>Complementary output for a strategic foresight project</dd></div>
+          <div><dt>Role</dt><dd>Research, concept, narrative &amp; visual design</dd></div>
+          <div><dt>Outcome</dt><dd>Pictorial prototype (Maison Carousel) to curate scenarios as rooms</dd></div>
+        </dl>
+      </section>
+
+      <!-- Scrollable right column -->
+      <section class="scroll-pane" aria-label="Project content">
+        <div class="scroll-inner">
+
+          <!-- Two-column intro article -->
+          <article class="article-block">
+            <h1>Home Under Conditions of Uncertainty</h1>
+            <p class="article-subhead">Pictorial (Maison Carousel)</p>
+
+            <p>
+              A strategic exploration of how the meaning and function of home is being reconfigured under multiple global drivers of change — and its implications for future urban living.
+            </p>
+
+            <p>
+              Across Europe, rising temperatures and sea levels, housing unaffordability, short-term rental pressure and increasing mobility destabilise the idea of home as a stable anchor. Financialization, legal precarities and social fragmentation shift home from a basis of existence toward a commodity — weakening its role as retreat, belonging and safety space.
+            </p>
+
+            <p>
+              This pictorial is a companion format to the foresight work: instead of presenting scenarios as linear text, it stages them as interiors. Each “room” curates one scenario, allowing futures of home to be browsed, compared and felt spatially.
+            </p>
+          </article>
+
+          <h2>Pictorial: Maison Carousel</h2>
+          <p class="intro">
+            A small printed object that extends the foresight project: each “room” hosts a different scenario, turning future housing conditions into a spatial, browsable sequence.
+          </p>
+
+          <!-- Image 1: technical layout -->
+          <section class="reflection-image" aria-label="Technical layout for the Maison Carousel">
+            <figure>
+              <img src="../../images/pictoriallayout.png" alt="Technical folding layout for the Maison Carousel pictorial, showing folds, cut corner and room sequence." loading="lazy">
+              <figcaption>
+                Technical layout: fold-and-glue template that produces four connected “rooms”.
+              </figcaption>
+            </figure>
+          </section>
+
+          <!-- Image 2: mock-up -->
+          <section class="reflection-image" aria-label="Mock-up of the Maison Carousel pictorial">
+            <figure>
+              <img src="../../images/pictorial01.png" alt="Mock-up photo of the Maison Carousel pictorial assembled as a small room-like carousel with scenario pages." loading="lazy">
+              <figcaption>
+                Mock-up: the assembled carousel — each room becomes a container for a curated scenario.
+              </figcaption>
+            </figure>
+          </section>
+
+          <p class="reflection-text">
+The pictorial is designed as a companion to the strategic foresight project <em>Home under Conditions of Uncertainty</em>.
+Rather than presenting scenarios as linear text, it stages them as interiors: intimate, curated, and comparable — room by room.
+          </p>
+
+        </div> <!-- /.scroll-inner -->
+      </section> <!-- /.scroll-pane -->
+    </main>
+  </body>
+</html>
