@@ -1,1 +1,189 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Extended Intelligences II — Madlen Wulffen</title>
+    <meta name="description" content="Project case study: Extended Intelligences II" />
+
+    <!-- Reuse your global site styles -->
+    <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
+
+    <style>
+      :root{
+        --rail: calc(1.5cm + clamp(16px,5vw,48px));
+        --panel: min(36vw, 520px);
+        --gap: clamp(12px, 2.2vw, 20px);
+        --accent:#FF3B1F; /* requested tile color */
+      }
+
+      /* 3-column layout */
+      .case-layout{
+        display:grid;
+        grid-template-columns: var(--rail) var(--panel) 1fr;
+        min-height:100vh;
+      }
+      .site-header{ position:sticky; top:0; z-index:50; }
+
+      /* Left rail */
+      .left-rail{
+        position: sticky; top: 0; height: 100vh;
+        display: flex; justify-content: center; align-items: flex-end;
+        padding: 0 0 3cm 0; background: transparent;
+      }
+      .rail-text{
+        margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: .06em;
+        writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);
+        font-size: clamp(22px, 4.5vw, 60px);
+      }
+
+      /* Static panel (tile + meta) */
+      .static-panel{
+        position: sticky; top: 0; height: 100vh;
+        display:flex; flex-direction:column; gap: var(--gap);
+        padding: 6px 0 14px 0; background: transparent;
+      }
+      .hero-tile{
+        width: calc(100% - 2cm); aspect-ratio: 1 / 1; background: var(--accent);
+        display:grid; place-items:center; color:#fff; padding: 20px; margin: 1cm;
+      }
+      .hero-tile .title{
+        font-weight: 900; font-size: clamp(20px, 2.4vw, 32px);
+        line-height: 1.1; letter-spacing: .03em; text-transform: uppercase;
+      }
+      .meta{
+        margin-left: 1cm; max-width: calc(100% - 2cm);
+        font-size: 16px; color: #111; display:grid; gap: 10px; text-align: left;
+      }
+      .meta dt{ font-weight: 600; margin: 0 0 2px 0; }
+      .meta dd{ margin: 0 0 14px 0; min-height: 1.6em; }
+
+      /* Scrollable content (right column) */
+      .scroll-pane{ min-height:100vh; overflow:auto; padding: calc(6px + 1cm) 40px 40px 0; }
+      .scroll-inner{ display:grid; gap: clamp(8px, 1.6vw, 18px); }
+
+      .scroll-inner h2 { margin: 0 0 2px 0; font-weight: 800; }
+      .scroll-inner p.intro { margin: 0 0 6px 0; }
+
+      /* Body text small/thin */
+      .reflection-text{
+        margin: 0 0 10px 0; font-size: 10pt; font-weight: 300; color: #111; line-height: 1.5; white-space: pre-line;
+      }
+
+      /* Single image (full width-ish, consistent with your style) */
+      .single-figure{
+        margin: 6px 0 10px 0;
+        display:grid;
+        gap: 6px;
+      }
+      .single-figure img{
+        width: calc(100% - 4cm);
+        margin-left: 2cm;
+        display:block;
+        object-fit: cover;
+        border: none;
+      }
+      .single-figure figcaption{
+        width: calc(100% - 4cm);
+        margin-left: 2cm;
+        font-size: 10pt;
+        font-weight: 300;
+        line-height: 1.4;
+        color:#111;
+      }
+
+      @media (max-width: 800px){
+        .single-figure img, .single-figure figcaption{
+          width: calc(100% - 32px);
+          margin-left: 16px;
+        }
+      }
+
+      /* Pull quote (larger quote between passages) */
+      .pull-quote{
+        margin: 18px 0 18px 0;
+        padding: 0 0 0 14px;
+        border-left: 3px solid #111;
+        font-size: 18pt;
+        font-weight: 500;
+        line-height: 1.25;
+        letter-spacing: .01em;
+      }
+
+      /* Optional: make paragraphs feel consistent */
+      .reflection p{
+        margin: 0 0 10px 0;
+        font-size: 10pt;
+        font-weight: 300;
+        color:#111;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header (same as home) -->
+    <header class="site-header">
+      <a class="logo-mark" href="../../index.html" aria-label="Home"></a>
+      <nav class="site-nav">
+        <a href="../../projects/">Projects</a>
+        <a href="../../thinking-space/">Thinking Space</a>
+        <a href="../../about/">About</a>
+      </nav>
+    </header>
+
+    <main class="case-layout">
+      <!-- Left rail -->
+      <aside class="left-rail" aria-hidden="true">
+        <div class="rail-text">PROJECTS</div>
+      </aside>
+
+      <!-- Static panel -->
+      <section class="static-panel">
+        <div class="hero-tile"><div class="title">Extended Intelligences II</div></div>
+
+        <dl class="meta" aria-label="Project details">
+          <div><dt>Time</dt><dd>26/01 – 30/01</dd></div>
+          <div><dt>Purpose</dt><dd>Exploring agentic systems, multi-agent decision-making, and tool-connected LLM workflows (incl. MCPs) through hands-on prototyping.</dd></div>
+          <div><dt>Role</dt><dd>Concept, research, and prototyping (sensor integration + prompt design).</dd></div>
+          <div><dt>Outcome</dt><dd>Fortune Teller prototype: a Pico Pi temperature sensor feeding an agentic system, producing AI “fortunes” printed via thermal printer; plus Python-based logic for sensor handling and mapping values to outputs.</dd></div>
+        </dl>
+      </section>
+
+      <!-- Scrollable right column -->
+      <section class="scroll-pane" aria-label="Project content">
+        <div class="scroll-inner">
+
+          <h2>Reflection</h2>
+
+          <figure class="single-figure" aria-label="Fortune teller output">
+            <img src="../../images/fortuneteller.jpg" alt="AI fortune printed by thermal printer as output from agentic system" loading="lazy">
+            <figcaption>AI fortune printed by thermal printer as output from Agentic system.</figcaption>
+          </figure>
+
+          <div class="reflection">
+            <p>We explored agentic AI as a powerful tool, systems that don’t just respond, but act and interact with other systems. What became immediately clear is that this power demands careful design. Questions of security, privacy, and control can’t be added later but need to be embedded directly into the design of the system from the start.</p>
+
+            <p>One very practical insight was how much the quality of output depends on the quality of input. The more specific and intentional a prompt is, the more solid and meaningful the response becomes. Large Language Models are not oracles but  mirrors of clarity (often the case with me) confusion. In that sense, LLMs seem best suited for certain kinds of work: synthesizing and summarizing complex information, reframing ideas, generating drafts and variations, recognizing patterns, or opening up option spaces. Used this way, they feel less like replacements for thinking and more like amplifiers of it.</p>
+
+            <p>A new learning for me were multi-agent systems, where different AI agents,  prompted as specific personas, negotiate with one another to reach decisions. This can be incredibly powerful, especially for complex scenarios like healthcare or policy-making, where many perspectives need to be considered quickly.</p>
+
+            <p>At the same time, I’m skeptical. These personas are inevitably based on simplified assumptions and stereotypes: the lawyer, the left-wing politician, the economist. Real people don’t think or act in such neat categories. There’s a built-in bias here, a quiet default error that risks reinforcing exactly the kinds of shortcuts we should be questioning and are actually the opposite of what I would consider diverse.</p>
+
+            <p>Another important layer is the political economy of AI itself. LLMs are not neutral tools but  products that want to  retain users, scale usage, and generate value. This makes them fertile ground for echo chambers, subtle persuasion, and dependency, especially when we stop questioning why we are using them in the first place. One concept I found particularly fascinating was Model Context Protocols (MCPs). Systems that allow AI agents to access and interact with external tools. While the possibilities are exciting, they also feel fragile. Once an agent can act beyond its own environment, questions of transparency and control become much harder to answer. Who is responsible when something goes wrong? And can we realistically maintain oversight at that level of complexity? We also discussed system prompts, the invisible instructions that shape an LLM’s behavior long before a user ever interacts with it. They function as a form of priming, quietly influencing limits and values. This layer of pre-configuration reminded me how much power sits before the interface and how little of it is visible.</p>
+
+            <p>So for the exercise we decided to lean into exactly this,  the mysticism that often surrounds AI. We built a fortune teller, a deliberately absurd system where a temperature sensor connected to a Pico Pi fed data to an AI agent. Based on your body temperature, the system would “predict” your future. This way to expose and amplify, how easily we grant authority and meaning to outputs that are, in reality, based on almost nothing. The project wasn’t about accuracy but about belief.</p>
+
+            <blockquote class="pull-quote">„In AI we trust“</blockquote>
+
+            <p>Not every problem needs AI. In fact, I’d argue that most don’t. Perhaps 80% of current use cases are unnecessary. But the remaining 20%, when  they are approached with ethical intention, can be genuinely powerful.</p>
+
+            <p>Still, I can’t help but wonder: will this all last? Or will AI follow the path of so many technologies before it like blockchain, etc., that were hyped and eventually forgotten?</p>
+          </div>
+
+        </div> <!-- /.scroll-inner -->
+      </section> <!-- /.scroll-pane -->
+    </main>
+  </body>
+</html>
 
