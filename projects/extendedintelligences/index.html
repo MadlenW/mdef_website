@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Extended Intelligences II — Madlen Wulffen</title>
-    <meta name="description" content="Project case study: Extended Intelligences II" />
+    <title>Agentic Systems + the Myth of Intelligence — Madlen Wulffen</title>
+    <meta name="description" content="Project case study: Agentic Systems + the Myth of Intelligence" />
 
     <!-- Reuse your global site styles -->
     <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
@@ -39,17 +39,28 @@
 
       /* Static panel (tile + meta) */
       .static-panel{
-        position: sticky; top: 0; height: 100vh;
-        display:flex; flex-direction:column; gap: var(--gap);
-        padding: 6px 0 14px 0; background: transparent;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;            /* ✅ panel can scroll if content is taller than viewport */
+        display:flex;
+        flex-direction:column;
+        gap: var(--gap);
+        padding: 6px 0 14px 0;
+        background: transparent;
+        overscroll-behavior: contain;
       }
       .hero-tile{
         width: calc(100% - 2cm); aspect-ratio: 1 / 1; background: var(--accent);
         display:grid; place-items:center; color:#fff; padding: 20px; margin: 1cm;
       }
       .hero-tile .title{
-        font-weight: 900; font-size: clamp(20px, 2.4vw, 32px);
-        line-height: 1.1; letter-spacing: .03em; text-transform: uppercase;
+        font-weight: 900;
+        font-size: clamp(18px, 2.2vw, 30px);
+        line-height: 1.15;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+        text-align: center;          /* ✅ centered title */
       }
       .meta{
         margin-left: 1cm; max-width: calc(100% - 2cm);
@@ -62,45 +73,59 @@
       .scroll-pane{ min-height:100vh; overflow:auto; padding: calc(6px + 1cm) 40px 40px 0; }
       .scroll-inner{ display:grid; gap: clamp(8px, 1.6vw, 18px); }
 
-      .scroll-inner h2 { margin: 0 0 2px 0; font-weight: 800; }
-      .scroll-inner p.intro { margin: 0 0 6px 0; }
-
-      /* Body text small/thin */
-      .reflection-text{
-        margin: 0 0 10px 0; font-size: 10pt; font-weight: 300; color: #111; line-height: 1.5; white-space: pre-line;
+      /* Two-column article like your reference */
+      .article-block{
+        margin: 0 0 2.5rem 0;
+        column-count: 2;
+        column-gap: 2.4rem;
+        column-fill: balance;
+        text-align: justify;
+        line-height: 1.6;
+        font-size: 11pt;
+      }
+      .article-block h1{
+        column-span: all;
+        margin: 0 0 0.8rem 0;
+        padding-bottom: 0.3rem;
+        font-weight: 900;
+        font-size: clamp(22px, 2.6vw, 32px);
+        letter-spacing: .02em;
+        text-transform: uppercase;
+      }
+      .article-block p{
+        margin: 0 0 0.9rem 0;
+        break-inside: avoid;
+        font-weight: 300;
+        color:#111;
+      }
+      @media (max-width: 900px){
+        .article-block{ column-count: 1; }
       }
 
-      /* Single image (full width-ish, consistent with your style) */
+      /* Figure spans full article width (across both columns) */
       .single-figure{
-        margin: 6px 0 10px 0;
+        column-span: all;
+        margin: 6px 0 14px 0;
         display:grid;
         gap: 6px;
       }
       .single-figure img{
-        width: calc(100% - 4cm);
-        margin-left: 2cm;
+        width: 100%;
         display:block;
         object-fit: cover;
         border: none;
       }
       .single-figure figcaption{
-        width: calc(100% - 4cm);
-        margin-left: 2cm;
+        width: 100%;
         font-size: 10pt;
         font-weight: 300;
         line-height: 1.4;
         color:#111;
       }
 
-      @media (max-width: 800px){
-        .single-figure img, .single-figure figcaption{
-          width: calc(100% - 32px);
-          margin-left: 16px;
-        }
-      }
-
       /* Pull quote (larger quote between passages) */
       .pull-quote{
+        column-span: all;
         margin: 18px 0 18px 0;
         padding: 0 0 0 14px;
         border-left: 3px solid #111;
@@ -108,15 +133,6 @@
         font-weight: 500;
         line-height: 1.25;
         letter-spacing: .01em;
-      }
-
-      /* Optional: make paragraphs feel consistent */
-      .reflection p{
-        margin: 0 0 10px 0;
-        font-size: 10pt;
-        font-weight: 300;
-        color:#111;
-        line-height: 1.5;
       }
     </style>
   </head>
@@ -140,10 +156,12 @@
 
       <!-- Static panel -->
       <section class="static-panel">
-        <div class="hero-tile"><div class="title">Extended Intelligences II</div></div>
+        <div class="hero-tile">
+          <div class="title">Agentic Systems + the Myth of Intelligence</div>
+        </div>
 
         <dl class="meta" aria-label="Project details">
-          <div><dt>Time</dt><dd>26/01 – 30/01</dd></div>
+          <div><dt>Time</dt><dd>26/01/2026 – 30/01/2026</dd></div>
           <div><dt>Purpose</dt><dd>Exploring agentic systems, multi-agent decision-making, and tool-connected LLM workflows (incl. MCPs) through hands-on prototyping.</dd></div>
           <div><dt>Role</dt><dd>Concept, research, and prototyping (sensor integration + prompt design).</dd></div>
           <div><dt>Outcome</dt><dd>Fortune Teller prototype: a Pico Pi temperature sensor feeding an agentic system, producing AI “fortunes” printed via thermal printer; plus Python-based logic for sensor handling and mapping values to outputs.</dd></div>
@@ -154,14 +172,14 @@
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
 
-          <h2>Reflection</h2>
+          <article class="article-block">
+            <h1>Reflection</h1>
 
-          <figure class="single-figure" aria-label="Fortune teller output">
-            <img src="../../images/fortuneteller.jpeg" alt="AI fortune printed by thermal printer as output from agentic system" loading="lazy">
-            <figcaption>AI fortune printed by thermal printer as output from Agentic system.</figcaption>
-          </figure>
+            <figure class="single-figure" aria-label="Fortune teller output">
+              <img src="../../images/fortuneteller.jpeg" alt="AI fortune printed by thermal printer as output from agentic system" loading="lazy">
+              <figcaption>AI fortune printed by thermal printer as output from Agentic system.</figcaption>
+            </figure>
 
-          <div class="reflection">
             <p>We explored agentic AI as a powerful tool, systems that don’t just respond, but act and interact with other systems. What became immediately clear is that this power demands careful design. Questions of security, privacy, and control can’t be added later but need to be embedded directly into the design of the system from the start.</p>
 
             <p>One very practical insight was how much the quality of output depends on the quality of input. The more specific and intentional a prompt is, the more solid and meaningful the response becomes. Large Language Models are not oracles but  mirrors of clarity (often the case with me) confusion. In that sense, LLMs seem best suited for certain kinds of work: synthesizing and summarizing complex information, reframing ideas, generating drafts and variations, recognizing patterns, or opening up option spaces. Used this way, they feel less like replacements for thinking and more like amplifiers of it.</p>
@@ -179,11 +197,10 @@
             <p>Not every problem needs AI. In fact, I’d argue that most don’t. Perhaps 80% of current use cases are unnecessary. But the remaining 20%, when  they are approached with ethical intention, can be genuinely powerful.</p>
 
             <p>Still, I can’t help but wonder: will this all last? Or will AI follow the path of so many technologies before it like blockchain, etc., that were hyped and eventually forgotten?</p>
-          </div>
+          </article>
 
         </div> <!-- /.scroll-inner -->
       </section> <!-- /.scroll-pane -->
     </main>
   </body>
 </html>
-
