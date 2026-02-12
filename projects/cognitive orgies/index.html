@@ -6,7 +6,6 @@
   <title>AURA — Madlen Wulffen</title>
   <meta name="description" content="AURA: Translating Pulse into Atmosphere — Cognitive Orgies Microchallenge I." />
 
-  <!-- SAME stylesheet as homepage -->
   <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
 
   <style>
@@ -15,73 +14,117 @@
       --navy:#273859;
     }
 
-    .project-hero{
-      padding: 2px clamp(16px, 5vw, 48px) 0;
-      border-bottom: 1px solid var(--grid-line);
+    /* ===== Layout ===== */
+
+    .project-shell{
+      height: calc(100vh - 70px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
 
-    .project-hero h1{
+    @media (max-width: 980px){
+      .project-shell{
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+
+    /* LEFT COLUMN */
+    .left{
+      border-right: 1px solid var(--grid-line);
+      background:#fff;
+    }
+
+    .left-inner{
+      position: sticky;
+      top: 0;
+      height: calc(100vh - 70px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 980px){
+      .left{
+        border-right:none;
+        border-bottom:1px solid var(--grid-line);
+      }
+      .left-inner{
+        position: relative;
+        height:auto;
+      }
+    }
+
+    .left-title{
+      padding: 20px clamp(16px,4vw,40px);
+      border-bottom:1px solid var(--grid-line);
+    }
+
+    .left-title h1{
       margin:0;
       font-weight:900;
       text-transform:uppercase;
       letter-spacing:.04em;
+      font-size: clamp(48px,5vw,80px);
       line-height:1;
-      font-size: clamp(60px, 6vw, 100px);
-      text-align:right;
     }
 
-    .project-meta{
-      padding: 12px clamp(16px, 5vw, 48px);
+    .left-title .sub{
+      margin-top:10px;
       font-size:14px;
-      color:#555;
-      border-bottom:1px solid var(--grid-line);
+      color:#666;
     }
 
-    .project-container{
-      padding: clamp(24px, 6vw, 80px) clamp(16px, 5vw, 48px);
-      max-width: 900px;
-      margin:auto;
+    .left-hero{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: clamp(20px,4vw,60px);
     }
 
-    .project-container p{
-      font-size: clamp(16px, 1.2vw, 18px);
+    .left-hero img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+    }
+
+    /* RIGHT COLUMN */
+    .right{
+      overflow-y:auto;
+      height: calc(100vh - 70px);
+      padding: clamp(32px,6vw,80px);
+    }
+
+    @media (max-width: 980px){
+      .right{
+        height:auto;
+        overflow:visible;
+      }
+    }
+
+    .right p{
+      font-size: clamp(16px,1.2vw,18px);
       line-height:1.7;
       margin-bottom:1.6em;
+      max-width:720px;
     }
 
-    .full-bleed{
+    .right img,
+    .right video{
       width:100%;
-      margin: clamp(40px, 6vw, 80px) 0;
+      margin:40px 0;
     }
 
-    .full-bleed img,
-    .full-bleed video{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .caption{
-      font-size:13px;
-      color:#666;
-      margin-top:8px;
-    }
-
-    .links{
-      margin-top:60px;
-      padding-top:30px;
-      border-top:1px solid var(--grid-line);
-      font-size:14px;
-    }
-
-    .links a{
+    .right a{
       color:var(--navy);
       text-decoration:none;
+      border-bottom:1px solid var(--navy);
     }
 
-    .links a:hover{
-      text-decoration:underline;
+    .right a:hover{
+      opacity:.7;
     }
+
   </style>
 </head>
 
@@ -96,115 +139,87 @@
   </nav>
 </header>
 
-<section class="project-hero">
-  <h1>AURA</h1>
-</section>
+<section class="project-shell">
 
-<section class="project-meta">
-  Cognitive Orgies — Microchallenge I <br>
-  2025 — IAAC / MDEF
-</section>
+  <!-- LEFT -->
+  <div class="left">
+    <div class="left-inner">
 
+      <div class="left-title">
+        <h1>AURA</h1>
+        <div class="sub">
+          Cognitive Orgies — Microchallenge I<br>
+          IAAC / MDEF — 2025
+        </div>
+      </div>
 
-<!-- HERO IMAGE -->
-<section class="full-bleed">
-  <img src="../../images/aurafull.jpg" alt="AURA full system">
-</section>
+      <div class="left-hero">
+        <img src="../../images/aurafull.jpg" alt="AURA full system">
+      </div>
 
-
-<section class="project-container">
-
-<p>
-This week felt like an encounter between ambition and friction. I began with a vision of building an intelligent, agentic system that could read the electrical noise of a pulse sensor and interpret it through an AI layer. I imagined a device that wouldn’t simply display biometric data, but would translate it into atmosphere.
-</p>
-
-<p>
-The idea emerged from my ongoing research on domestic anti-curation. I am interested in homes that respond to presence rather than optimize behavior. Not smart homes that manage you, but spaces that acknowledge you. AURA was conceived as a system where your nervous system subtly shapes the room.
-</p>
-
-<p>
-At first, I assumed interpretation was necessary for meaning. Raw BPM data felt insufficient. The AI agent would categorize emotional states — calm, anxious, excited — and decide how the environment should respond. Mediation felt conceptually sophisticated.
-</p>
-
-<p>
-But infrastructure pushed back. The MCP server worked briefly, then collapsed under unstable network conditions. Cloudflare tunnels dropped. Authentication failed. I spent hours trying to stabilize connections before realizing the issue wasn’t code — it was architecture. Agentic AI systems depend on stable infrastructure. Without it, intelligence evaporates.
-</p>
-
-<p>
-At the same time, the pulse sensor revealed another tension. Biological signals require continuous, high-frequency sampling. AI agents operate in query-time. The temporalities did not align. I was trying to interpret life through fragmented requests.
-</p>
-
-</section>
-
-
-<!-- PROCESS IMAGE -->
-<section class="full-bleed">
-  <img src="../../images/aurasetup.jpg" alt="AURA hardware setup">
-  <div class="project-container caption">
-    Hardware setup during signal calibration.
+    </div>
   </div>
-</section>
 
+  <!-- RIGHT (SCROLLABLE) -->
+  <div class="right">
 
-<section class="project-container">
+    <p>
+    AURA began as an attempt to build an intelligent, agentic system capable of interpreting biometric data and translating it into atmosphere. The idea was to move beyond display and toward mediation — to build a system that would read the electrical noise of a pulse sensor, process it through an AI layer, and decide how a space should respond.
+    </p>
 
-<p>
-By the third morning, we made the decision to remove the AI layer entirely. That moment carried a moral trace for me. The agent architecture had been my contribution. Letting it go meant choosing the project over ownership.
-</p>
-
-<p>
-The system became radically simple: pulse sensor → Pico → LED strip. Direct translation. No categorization. No cloud.
-</p>
-
-<p>
-And unexpectedly, that simplicity felt stronger. The LED pulses in exact rhythm with your heartbeat. It doesn’t interpret you. It doesn’t optimize you. It simply mirrors you.
-</p>
-
-<p>
-Technically, the process was far from simple. The sensor was extremely sensitive to light and pressure. I implemented adaptive baseline tracking, hysteresis-based contact detection, and inter-beat smoothing to stabilize BPM readings. The code is tuned rather than elegant. But embodiment is never clean data.
-</p>
-
-</section>
-
-
-<!-- DETAIL IMAGE -->
-<section class="full-bleed">
-  <img src="../../images/earpiece.jpg" alt="AURA wearable earpiece">
-</section>
-
-
-<section class="project-container">
-
-<p>
-Originally, we wanted to translate pulse into electromagnetic fields. But field strength was too weak. We pivoted to light. That shift changed the affective quality of the project. Magnetic fields are infrastructural and invisible; light is atmospheric and relational.
-</p>
-
-<p>
-What remains is a question made physical: What if your home knew your heartbeat — not to judge or optimize, but simply to glow with you?
-</p>
-
-</section>
-
-
-<!-- VIDEO -->
-<section class="full-bleed">
-  <video controls>
-    <source src="../../images/prototype test.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</section>
-
-
-<section class="project-container links">
-  <p>
-    <strong>Related Links</strong><br>
+    <p>
+    The full technical documentation of the prototype can be found on 
     <a href="https://www.hackster.io/544132/aura-dbcf62" target="_blank">
-      Group Documentation on Hackster
-    </a>
-  </p>
-</section>
+    Hackster.io</a>, but what interests me here is less the outcome and more the traces left by the process.
+    </p>
 
+    <p>
+    My initial assumption was that interpretation creates meaning. Raw BPM data felt insufficient. I designed an MCP architecture where an AI agent would categorize emotional states — calm, anxious, excited — and translate those states into environmental outputs. Mediation felt conceptually sophisticated.
+    </p>
+
+    <p>
+    The first cognitive rupture came through infrastructure. The network was unstable. Cloudflare tunnels collapsed. Authentication failed. Agentic AI systems revealed themselves as deeply dependent on stable connectivity. Intelligence, I realized, is infrastructural.
+    </p>
+
+    <p>
+    A second shift emerged from the pulse itself. Biological rhythms require continuous high-frequency sampling. AI agents operate in query-time. The temporalities did not align. I was trying to interpret life through fragmented requests.
+    </p>
+
+    <img src="../../images/aurasetup.jpg" alt="Hardware setup">
+
+    <p>
+    By the third morning, we removed the AI layer entirely. That moment carried a moral trace. The agent architecture had been my contribution. Letting it go meant choosing coherence over ownership.
+    </p>
+
+    <p>
+    The system became radically simple: pulse sensor → Pico → LED strip. Direct translation. No categorization. No cloud.
+    </p>
+
+    <p>
+    And unexpectedly, that simplicity felt more aligned with my research. The LED pulses in exact rhythm with your heartbeat. It doesn’t interpret you. It doesn’t optimize you. It mirrors you.
+    </p>
+
+    <img src="../../images/earpiece.jpg" alt="Earpiece prototype">
+
+    <p>
+    Technically, the process required tuning: adaptive baselines, hysteresis-based contact detection, inter-beat smoothing. The body resists clean data. Noise is inherent.
+    </p>
+
+    <p>
+    Originally, we aimed to translate pulse into electromagnetic fields. The fields proved too weak. We pivoted to light. Magnetic fields are infrastructural and invisible; light is atmospheric and relational. The pivot reshaped the affective quality of the project.
+    </p>
+
+    <video controls>
+      <source src="../../images/prototype test.mp4" type="video/mp4">
+    </video>
+
+    <p>
+    What remains is a physical question: what if your home knew your heartbeat — not to judge, not to optimize, but simply to glow with you?
+    </p>
+
+  </div>
+
+</section>
 
 </body>
 </html>
-
