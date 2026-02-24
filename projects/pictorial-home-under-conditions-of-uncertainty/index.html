@@ -144,7 +144,7 @@
       /* =======================
          Pictorial Flip Viewer (spreads)
          ======================= */
-      .zine-viewer{ margin: 0 0 2.2rem 0; }
+      .zine-viewer{ margin: 0 0 0.6rem 0; }
 
       .zine-frame{
         display:grid;
@@ -165,7 +165,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         width: 100%;
-        max-width: 980px; /* keeps it elegant */
+        max-width: 980px;
       }
 
       .zine-spread img{
@@ -205,6 +205,8 @@
         margin: 10px 0 0 0;
         font-size: 10pt;
         font-weight: 500;
+        letter-spacing: .08em;
+        text-transform: uppercase;
       }
       .zine-page-indicator{
         margin: 2px 0 0 0;
@@ -213,11 +215,17 @@
         color:#444;
       }
 
+      .viewer-note{
+        margin: 0 0 1.6rem 0;
+        font-size: 10pt;
+        font-weight: 300;
+        line-height: 1.5;
+        color:#111;
+        max-width: 980px;
+      }
+
       @media (max-width: 720px){
-        /* On small screens, stack spreads vertically */
-        .zine-spread{
-          grid-template-columns: 1fr;
-        }
+        .zine-spread{ grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -257,8 +265,11 @@
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
 
+          <!-- NEW TOP TITLE -->
+          <h2>Home Under Conditions of Uncertainty</h2>
+
           <!-- PICTORIAL (FIRST DRAFT) FLIP VIEWER — COVER + SPREADS -->
-          <section class="zine-viewer pictorial-viewer" aria-label="Pictorial — First Draft Submission (2402)">
+          <section class="zine-viewer pictorial-viewer" aria-label="Pictorial — First draft publication">
             <div class="zine-frame">
               <button class="zine-arrow zine-arrow-left" aria-label="Previous spread">←</button>
 
@@ -272,8 +283,23 @@
               <button class="zine-arrow zine-arrow-right" aria-label="Next spread">→</button>
             </div>
 
-            <p class="zine-caption">Pictorial — First Draft Submission (2402)</p>
+            <p class="zine-caption">First draft publication</p>
             <p class="zine-page-indicator">Cover (Page 1)</p>
+          </section>
+
+          <!-- Instruction / summary sentence -->
+          <p class="viewer-note">
+            During the last session we did a “speed dating” exercise to interview one of your peers. Please align with another peer (who has been missing) to find a moment to interview each other. You need to select at least 3 questions from Miro (one from each cluster) and ask your peer to answer those. Based on the answers you will need to create a snapshot — a postcard-size/style visual representation of your peer’s project. You then upload that snapshot to your website + into your folder.
+          </p>
+
+          <!-- Snapshot upload -->
+          <section class="reflection-image" aria-label="Snapshot: peer postcard">
+            <figure>
+              <img src="../../images/sila_pictorial.png" alt="Snapshot postcard of peer project: sila pictorial" loading="lazy">
+              <figcaption>
+                Snapshot (postcard) — peer interview outcome.
+              </figcaption>
+            </figure>
           </section>
 
           <!-- Two-column intro article -->
