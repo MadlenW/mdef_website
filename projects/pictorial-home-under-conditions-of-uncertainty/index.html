@@ -142,6 +142,55 @@
         font-weight: 300;
         color:#444;
       }
+
+      /* =======================
+         Pictorial Flip Viewer (minimal)
+         ======================= */
+      .zine-viewer{
+        margin: 0 0 2.2rem 0;
+      }
+      .zine-frame{
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 12px;
+      }
+      .zine-page{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
+      .zine-page img{
+        display:block;
+        max-width: 100%;
+        height: auto;
+      }
+      .zine-arrow{
+        appearance: none;
+        border: 1px solid #111;
+        background: transparent;
+        color: #111;
+        padding: 10px 12px;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        border-radius: 999px;
+      }
+      .zine-arrow:focus{
+        outline: 2px solid rgba(0,0,0,.35);
+        outline-offset: 2px;
+      }
+      .zine-caption{
+        margin: 10px 0 0 0;
+        font-size: 10pt;
+        font-weight: 500;
+      }
+      .zine-page-indicator{
+        margin: 2px 0 0 0;
+        font-size: 9pt;
+        font-weight: 300;
+        color:#444;
+      }
     </style>
   </head>
 
@@ -179,6 +228,22 @@
       <!-- Scrollable right column -->
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
+
+          <!-- PICTORIAL (FIRST DRAFT) FLIP VIEWER -->
+          <section class="zine-viewer pictorial-viewer" aria-label="Pictorial — First Draft Submission (2402)">
+            <div class="zine-frame">
+              <button class="zine-arrow zine-arrow-left" aria-label="Previous page">←</button>
+
+              <div class="zine-page">
+                <!-- Start with page 1; JS swaps src for other pages -->
+                <img src="../../images/2402_pictorial.png" alt="Pictorial first draft, page 1" loading="lazy">
+              </div>
+
+              <button class="zine-arrow zine-arrow-right" aria-label="Next page">→</button>
+            </div>
+            <p class="zine-caption">Pictorial — First Draft Submission (2402)</p>
+            <p class="zine-page-indicator">Page 1 of 14</p>
+          </section>
 
           <!-- Two-column intro article -->
           <article class="article-block">
@@ -231,5 +296,59 @@ Rather than presenting scenarios as linear text, it stages them as interiors: in
         </div> <!-- /.scroll-inner -->
       </section> <!-- /.scroll-pane -->
     </main>
+
+    <!-- Simple JS page flipper for pictorial -->
+    <script>
+      (function(){
+        const pages = [
+          "../../images/2402_pictorial.png",
+          "../../images/2402_pictorial2.png",
+          "../../images/2402_pictorial3.png",
+          "../../images/2402_pictorial4.png",
+          "../../images/2402_pictorial5.png",
+          "../../images/2402_pictorial6.png",
+          "../../images/2402_pictorial7.png",
+          "../../images/2402_pictorial8.png",
+          "../../images/2402_pictorial9.png",
+          "../../images/2402_pictorial10.png",
+          "../../images/2402_pictorial11.png",
+          "../../images/2402_pictorial12.png",
+          "../../images/2402_pictorial13.png",
+          "../../images/2402_pictorial14.png"
+        ];
+
+        let index = 0;
+        const viewer = document.querySelector('.pictorial-viewer');
+        if (!viewer) return;
+
+        const img   = viewer.querySelector('.zine-page img');
+        const prev  = viewer.querySelector('.zine-arrow-left');
+        const next  = viewer.querySelector('.zine-arrow-right');
+        const indicator = viewer.querySelector('.zine-page-indicator');
+
+        function updatePage(){
+          img.src = pages[index];
+          img.alt = "Pictorial first draft, page " + (index + 1);
+          if (indicator){
+            indicator.textContent = "Page " + (index + 1) + " of " + pages.length;
+          }
+        }
+
+        if (prev && next && img){
+          prev.addEventListener('click', function(){
+            index = (index - 1 + pages.length) % pages.length;
+            updatePage();
+          });
+
+          next.addEventListener('click', function(){
+            index = (index + 1) % pages.length;
+            updatePage();
+          });
+
+          // Initialize
+          updatePage();
+        }
+      })();
+    </script>
   </body>
 </html>
