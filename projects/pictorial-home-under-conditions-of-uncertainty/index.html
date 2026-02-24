@@ -110,16 +110,14 @@
         text-transform: uppercase;
       }
 
-      .article-block p:first-of-type{
-        margin-top: 0;
-      }
+      .article-block p:first-of-type{ margin-top: 0; }
 
       @media (max-width: 900px){
         .article-block{ column-count: 1; }
       }
 
       /* =======================
-         Scenario image (same style as other pages)
+         Scenario image
          ======================= */
       .reflection-image{
         margin: 0 0 1.8rem 0;
@@ -144,42 +142,65 @@
       }
 
       /* =======================
-         Pictorial Flip Viewer (minimal)
+         Pictorial Flip Viewer (spreads)
          ======================= */
-      .zine-viewer{
-        margin: 0 0 2.2rem 0;
-      }
+      .zine-viewer{ margin: 0 0 2.2rem 0; }
+
       .zine-frame{
-        display: grid;
+        display:grid;
         grid-template-columns: auto 1fr auto;
-        align-items: center;
+        align-items:center;
         gap: 12px;
       }
+
       .zine-page{
         display:flex;
         justify-content:center;
         align-items:center;
       }
-      .zine-page img{
+
+      /* Spread layout */
+      .zine-spread{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%;
+        max-width: 980px; /* keeps it elegant */
+      }
+
+      .zine-spread img{
         display:block;
-        max-width: 100%;
+        width: 100%;
         height: auto;
       }
+
+      /* Cover single page */
+      .zine-cover{
+        width: 100%;
+        max-width: 520px;
+      }
+      .zine-cover img{
+        display:block;
+        width: 100%;
+        height: auto;
+      }
+
       .zine-arrow{
-        appearance: none;
-        border: 1px solid #111;
-        background: transparent;
-        color: #111;
+        appearance:none;
+        border:1px solid #111;
+        background:transparent;
+        color:#111;
         padding: 10px 12px;
-        font-size: 16px;
-        line-height: 1;
-        cursor: pointer;
-        border-radius: 999px;
+        font-size:16px;
+        line-height:1;
+        cursor:pointer;
+        border-radius:999px;
       }
       .zine-arrow:focus{
-        outline: 2px solid rgba(0,0,0,.35);
-        outline-offset: 2px;
+        outline:2px solid rgba(0,0,0,.35);
+        outline-offset:2px;
       }
+
       .zine-caption{
         margin: 10px 0 0 0;
         font-size: 10pt;
@@ -190,6 +211,13 @@
         font-size: 9pt;
         font-weight: 300;
         color:#444;
+      }
+
+      @media (max-width: 720px){
+        /* On small screens, stack spreads vertically */
+        .zine-spread{
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -229,20 +257,23 @@
       <section class="scroll-pane" aria-label="Project content">
         <div class="scroll-inner">
 
-          <!-- PICTORIAL (FIRST DRAFT) FLIP VIEWER -->
+          <!-- PICTORIAL (FIRST DRAFT) FLIP VIEWER — COVER + SPREADS -->
           <section class="zine-viewer pictorial-viewer" aria-label="Pictorial — First Draft Submission (2402)">
             <div class="zine-frame">
-              <button class="zine-arrow zine-arrow-left" aria-label="Previous page">←</button>
+              <button class="zine-arrow zine-arrow-left" aria-label="Previous spread">←</button>
 
               <div class="zine-page">
-                <!-- Start with page 1; JS swaps src for other pages -->
-                <img src="../../images/2402_pictorial.png" alt="Pictorial first draft, page 1" loading="lazy">
+                <!-- JS injects cover/spreads here -->
+                <div class="zine-cover" aria-hidden="true">
+                  <img src="../../images/2402_pictorial.png" alt="Pictorial first draft, cover" loading="lazy">
+                </div>
               </div>
 
-              <button class="zine-arrow zine-arrow-right" aria-label="Next page">→</button>
+              <button class="zine-arrow zine-arrow-right" aria-label="Next spread">→</button>
             </div>
+
             <p class="zine-caption">Pictorial — First Draft Submission (2402)</p>
-            <p class="zine-page-indicator">Page 1 of 14</p>
+            <p class="zine-page-indicator">Cover (Page 1)</p>
           </section>
 
           <!-- Two-column intro article -->
@@ -297,57 +328,124 @@ Rather than presenting scenarios as linear text, it stages them as interiors: in
       </section> <!-- /.scroll-pane -->
     </main>
 
-    <!-- Simple JS page flipper for pictorial -->
+    <!-- JS: Cover (1) then double-page spreads (2–3, 4–5, ...) -->
     <script>
       (function(){
+        // Individual pages (1..14)
         const pages = [
-          "../../images/2402_pictorial.png",
-          "../../images/2402_pictorial2.png",
-          "../../images/2402_pictorial3.png",
-          "../../images/2402_pictorial4.png",
-          "../../images/2402_pictorial5.png",
-          "../../images/2402_pictorial6.png",
-          "../../images/2402_pictorial7.png",
-          "../../images/2402_pictorial8.png",
-          "../../images/2402_pictorial9.png",
-          "../../images/2402_pictorial10.png",
-          "../../images/2402_pictorial11.png",
-          "../../images/2402_pictorial12.png",
-          "../../images/2402_pictorial13.png",
-          "../../images/2402_pictorial14.png"
+          "../../images/2402_pictorial.png",   // 1 (cover)
+          "../../images/2402_pictorial2.png",  // 2
+          "../../images/2402_pictorial3.png",  // 3
+          "../../images/2402_pictorial4.png",  // 4
+          "../../images/2402_pictorial5.png",  // 5
+          "../../images/2402_pictorial6.png",  // 6
+          "../../images/2402_pictorial7.png",  // 7
+          "../../images/2402_pictorial8.png",  // 8
+          "../../images/2402_pictorial9.png",  // 9
+          "../../images/2402_pictorial10.png", // 10
+          "../../images/2402_pictorial11.png", // 11
+          "../../images/2402_pictorial12.png", // 12
+          "../../images/2402_pictorial13.png", // 13
+          "../../images/2402_pictorial14.png"  // 14
         ];
 
-        let index = 0;
+        // Build spreads: [ [1], [2,3], [4,5], ... ]
+        const spreads = [];
+        spreads.push([0]); // cover is index 0 (page 1)
+
+        for (let i = 1; i < pages.length; i += 2){
+          const left = i;
+          const right = i + 1;
+          if (right < pages.length) spreads.push([left, right]);
+          else spreads.push([left]); // fallback if odd count
+        }
+
+        let spreadIndex = 0;
+
         const viewer = document.querySelector('.pictorial-viewer');
         if (!viewer) return;
 
-        const img   = viewer.querySelector('.zine-page img');
-        const prev  = viewer.querySelector('.zine-arrow-left');
-        const next  = viewer.querySelector('.zine-arrow-right');
+        const pageHost = viewer.querySelector('.zine-page');
+        const prev = viewer.querySelector('.zine-arrow-left');
+        const next = viewer.querySelector('.zine-arrow-right');
         const indicator = viewer.querySelector('.zine-page-indicator');
 
-        function updatePage(){
-          img.src = pages[index];
-          img.alt = "Pictorial first draft, page " + (index + 1);
+        function renderSpread(){
+          const spread = spreads[spreadIndex];
+          pageHost.innerHTML = "";
+
+          // Cover (single page)
+          if (spread.length === 1 && spreadIndex === 0){
+            const wrap = document.createElement('div');
+            wrap.className = "zine-cover";
+            const img = document.createElement('img');
+            img.src = pages[spread[0]];
+            img.alt = "Pictorial first draft, cover (page 1)";
+            img.loading = "lazy";
+            wrap.appendChild(img);
+            pageHost.appendChild(wrap);
+
+            if (indicator){
+              indicator.textContent = "Cover (Page 1)";
+            }
+            return;
+          }
+
+          // Spread (two-up if possible)
+          if (spread.length === 2){
+            const wrap = document.createElement('div');
+            wrap.className = "zine-spread";
+
+            const imgL = document.createElement('img');
+            imgL.src = pages[spread[0]];
+            imgL.alt = "Pictorial first draft, page " + (spread[0] + 1);
+            imgL.loading = "lazy";
+
+            const imgR = document.createElement('img');
+            imgR.src = pages[spread[1]];
+            imgR.alt = "Pictorial first draft, page " + (spread[1] + 1);
+            imgR.loading = "lazy";
+
+            wrap.appendChild(imgL);
+            wrap.appendChild(imgR);
+            pageHost.appendChild(wrap);
+
+            if (indicator){
+              indicator.textContent =
+                "Spread " + (spreadIndex + 1) + " of " + spreads.length +
+                " — Pages " + (spread[0] + 1) + "–" + (spread[1] + 1);
+            }
+            return;
+          }
+
+          // Single leftover page (only if odd number of pages)
+          const wrap = document.createElement('div');
+          wrap.className = "zine-cover";
+          const img = document.createElement('img');
+          img.src = pages[spread[0]];
+          img.alt = "Pictorial first draft, page " + (spread[0] + 1);
+          img.loading = "lazy";
+          wrap.appendChild(img);
+          pageHost.appendChild(wrap);
+
           if (indicator){
-            indicator.textContent = "Page " + (index + 1) + " of " + pages.length;
+            indicator.textContent =
+              "Spread " + (spreadIndex + 1) + " of " + spreads.length +
+              " — Page " + (spread[0] + 1);
           }
         }
 
-        if (prev && next && img){
-          prev.addEventListener('click', function(){
-            index = (index - 1 + pages.length) % pages.length;
-            updatePage();
-          });
+        prev.addEventListener('click', function(){
+          spreadIndex = (spreadIndex - 1 + spreads.length) % spreads.length;
+          renderSpread();
+        });
 
-          next.addEventListener('click', function(){
-            index = (index + 1) % pages.length;
-            updatePage();
-          });
+        next.addEventListener('click', function(){
+          spreadIndex = (spreadIndex + 1) % spreads.length;
+          renderSpread();
+        });
 
-          // Initialize
-          updatePage();
-        }
+        renderSpread();
       })();
     </script>
   </body>
