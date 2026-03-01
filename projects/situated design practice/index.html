@@ -1,1 +1,190 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Situated Design Practice — Madlen Wulffen</title>
+    <meta name="description" content="Project case study: Situated Design Practice" />
 
+    <!-- Reuse your global site styles -->
+    <link rel="stylesheet" href="../../stylesheets/style.css?v=3" />
+
+    <style>
+      :root{
+        --rail: calc(1.5cm + clamp(16px,5vw,48px));
+        --panel: min(36vw, 520px);
+        --gap: clamp(12px, 2.2vw, 20px);
+        --accent:#273859; /* navy */
+      }
+
+      /* 3-column layout */
+      .case-layout{
+        display:grid;
+        grid-template-columns: var(--rail) var(--panel) 1fr;
+        min-height:100vh;
+      }
+      .site-header{ position:sticky; top:0; z-index:50; }
+
+      /* Left rail */
+      .left-rail{
+        position: sticky; top: 0; height: 100vh;
+        display: flex; justify-content: center; align-items: flex-end;
+        padding: 0 0 3cm 0; background: transparent;
+      }
+      .rail-text{
+        margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: .06em;
+        writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);
+        font-size: clamp(22px, 4.5vw, 60px);
+      }
+
+      /* Static panel (tile + meta) */
+      .static-panel{
+        position: sticky; top: 0; height: 100vh;
+        display:flex; flex-direction:column; gap: var(--gap);
+        padding: 6px 0 14px 0; background: transparent;
+      }
+      .hero-tile{
+        width: calc(100% - 2cm); aspect-ratio: 1 / 1; background: var(--accent);
+        display:grid; place-items:center; color:#fff; padding: 20px; margin: 1cm;
+      }
+      .hero-tile .title{
+        font-weight: 900; font-size: clamp(20px, 2.4vw, 32px);
+        line-height: 1.1; letter-spacing: .03em; text-transform: uppercase;
+        text-align: center;
+      }
+      .meta{
+        margin-left: 1cm; max-width: calc(100% - 2cm);
+        font-size: 16px; color: #111; display:grid; gap: 10px; text-align: left;
+      }
+      .meta dt{ font-weight: 600; margin: 0 0 2px 0; }
+      .meta dd{ margin: 0 0 14px 0; min-height: 1.6em; }
+
+      /* Scrollable content (right column) */
+      .scroll-pane{ min-height:100vh; overflow:auto; padding: calc(6px + 1cm) 40px 40px 0; }
+      .scroll-inner{ display:grid; gap: clamp(12px, 1.6vw, 22px); }
+
+      /* =======================
+         Article block in RIGHT column
+         ======================= */
+      .article-block {
+        margin: 0 0 1.8rem 0;
+        column-count: 2;
+        column-gap: 2.4rem;
+        column-fill: balance;
+        text-align: justify;
+        line-height: 1.6;
+        font-size: 11pt;
+        break-inside: avoid;
+        padding-top: 0.2rem;
+      }
+
+      .article-block h1 {
+        column-span: all;
+        margin: 0 0 0.6rem 0;
+        padding-bottom: 0.1rem;
+        font-weight: 900;
+        font-size: clamp(22px, 2.6vw, 32px);
+        text-transform: uppercase;
+        letter-spacing: .02em;
+        text-align: left;
+      }
+
+      .article-block p:first-of-type{
+        margin-top: 0;
+      }
+
+      /* Mobile: fall back to single column for readability */
+      @media (max-width: 900px){
+        .article-block{ column-count: 1; }
+      }
+
+      /* =======================
+         Postcards block
+         ======================= */
+      .postcards{
+        display: grid;
+        gap: 18px;
+        margin: 0 0 2.5rem 0;
+      }
+
+      .postcards figure{
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .postcards img{
+        display:block;
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header (same as home) -->
+    <header class="site-header">
+      <a class="logo-mark" href="../../index.html" aria-label="Home"></a>
+      <nav class="site-nav">
+        <a href="../../projects/">Projects</a>
+        <a href="../../thinking-space/">Thinking Space</a>
+        <a href="../../about/">About</a>
+      </nav>
+    </header>
+
+    <main class="case-layout">
+      <!-- Left rail -->
+      <aside class="left-rail" aria-hidden="true">
+        <div class="rail-text">PROJECTS</div>
+      </aside>
+
+      <!-- Static panel -->
+      <section class="static-panel">
+        <div class="hero-tile">
+          <div class="title">Situated Design Practice</div>
+        </div>
+
+        <dl class="meta" aria-label="Project details">
+          <div><dt>Time</dt><dd></dd></div>
+          <div><dt>Context</dt><dd>Situated Design Practices — Postcards</dd></div>
+          <div><dt>Role</dt><dd></dd></div>
+          <div><dt>Outcome</dt><dd>4 Postcards</dd></div>
+        </dl>
+      </section>
+
+      <!-- Scrollable right column -->
+      <section class="scroll-pane" aria-label="Project content">
+        <div class="scroll-inner">
+
+          <article class="article-block">
+            <h1>Situated Design Practice</h1>
+
+            <p>
+              I love letters. Especially love letters. I am writing at leat one letter or postcard every week to my beloved grandmother, my best friend or my godchild, Camilla.
+              For this, I am taking the advantage of pursuing my letter writing and created four postcards to the people I was able to meet and listen to during the course „Situated Practices“ to reflect on their stories and my own creative practice.
+            </p>
+          </article>
+
+          <section class="postcards" aria-label="Postcards">
+            <figure>
+              <img src="../../images/postcard1.png" alt="Postcard 1" loading="lazy">
+            </figure>
+
+            <figure>
+              <img src="../../images/postcard2.png" alt="Postcard 2" loading="lazy">
+            </figure>
+
+            <figure>
+              <img src="../../images/postcard3.png" alt="Postcard 3" loading="lazy">
+            </figure>
+
+            <figure>
+              <img src="../../images/postcard4.jpg" alt="Postcard 4" loading="lazy">
+            </figure>
+          </section>
+
+        </div> <!-- /.scroll-inner -->
+      </section> <!-- /.scroll-pane -->
+    </main>
+  </body>
+</html>
